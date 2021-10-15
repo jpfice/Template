@@ -18,6 +18,16 @@ import org.springframework.web.servlet.ModelAndView;
 public class IndexController {
 	
 	
+	@RequestMapping("/systemHome")
+	public ModelAndView systemHomePage(){
+        Date date=new Date();
+
+        ModelAndView modelAndView=new ModelAndView();
+        modelAndView.addObject("date",date);
+        modelAndView.setViewName("systemhome");
+        return modelAndView;
+    }
+	
 	@RequestMapping("/demo")
 	public ModelAndView handle01(){
         Date date=new Date();
