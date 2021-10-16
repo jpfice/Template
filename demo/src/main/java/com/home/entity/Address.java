@@ -5,8 +5,8 @@ import java.util.Date;
 import org.springframework.stereotype.Component;
 
 /**
- * �ջ���ַʵ��
- * @author Administrator
+ * 收货地址实体
+ * @author jpf
  *
  */
 @Component
@@ -14,15 +14,15 @@ public class Address {
 	
 	private Long id;//id
 	
-	private Long userId;//�û�id
+	private Long userId;//用户id
 	
-	private String name;//�ջ�������
+	private String name;//收货人姓名
 	
-	private String address;//��ϸ��ַ
+	private String address;//详细地址ַ
 	
-	private String phone;//�ֻ�����
+	private String phone;//手机号码
 	
-	private Date createTime;//���ʱ��
+	private Date createTime;//添加时间
 
 	public Long getId() {
 		return id;
@@ -72,9 +72,10 @@ public class Address {
 		this.createTime = createTime;
 	}
 
+	@Override
+	public String toString() {
+		return "Address [id=" + id + ", userId=" + userId + ", name=" + name + ", address=" + address + ", phone="
+				+ phone + ", createTime=" + createTime + "]";
+	}
 
-	
-	
-	
-	
 }

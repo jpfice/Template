@@ -5,30 +5,30 @@ import java.util.Date;
 import org.springframework.stereotype.Component;
 
 /**
- * �ͻ�ʵ��
+ * 客户实体
  * @author Administrator
  *
  */
 @Component
 public class Account {
 	
-	private Long id;//�ͻ�id
+	private Long id;//客户id
 	
-	private String name;//�ͻ�����
+	private String name;//客户名称
 	
-	private String password;//����
+	private String password;//密码
 	
-	private String email;//����
+	private String email;//邮箱
 	
-	private String trueName ;//��ʵ����
+	private String trueName ;//真实姓名
 	
-	private int sex;//�Ա�0��δ֪��1���У�2��Ů
+	private int sex;//性别：0：未知，1：男，2：女
 	
-	private int status;//״̬��0����ʾ���ᡢ1����ʾ����
+	private int status;//状态：0：表示冻结、1：表示可用
 	
 	private double balance;
 	
-	private Date createTime;//ע��ʱ��
+	private Date createTime;//注册时间
 
 	public Long getId() {
 		return id;
@@ -37,8 +37,6 @@ public class Account {
 	public void setId(Long id) {
 		this.id = id;
 	}
-
-	
 
 	public String getName() {
 		return name;
@@ -104,10 +102,11 @@ public class Account {
 		this.balance = balance;
 	}
 
-	
-	
-	
-	
-	
-	
+	@Override
+	public String toString() {
+		return "Account [id=" + id + ", name=" + name + ", password=" + password + ", email=" + email + ", trueName="
+				+ trueName + ", sex=" + sex + ", status=" + status + ", balance=" + balance + ", createTime="
+				+ createTime + "]";
+	}
+
 }
