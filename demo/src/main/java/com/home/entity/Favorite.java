@@ -5,8 +5,8 @@ import java.util.Date;
 import org.springframework.stereotype.Component;
 
 /**
- * �ղ�ʵ��
- * @author Administrator
+ * 收藏实体
+ * @author jpf
  *
  */
 @Component
@@ -14,17 +14,17 @@ public class Favorite {
 	
 	private Long id;//id
 	
-	private Long productId;//��Ʒid
+	private Long productId;//商品id
 	
-	private Long userId;//�û�id
+	private Long userId;//用户id
 	
-	private String name;//��Ʒ����
+	private String name;//商品名称
 	
-	private String imageUrl;//��Ʒ��ͼ
+	private String imageUrl;//商品主图
 	
-	private Double price;//��Ʒ�۸�
+	private Double price;//商品价格
 	
-	private Date createTime;//���ʱ��
+	private Date createTime;//添加时间
 
 	public Long getId() {
 		return id;
@@ -80,6 +80,12 @@ public class Favorite {
 
 	public void setUserId(Long userId) {
 		this.userId = userId;
+	}
+
+	@Override
+	public String toString() {
+		return "Favorite [id=" + id + ", productId=" + productId + ", userId=" + userId + ", name=" + name
+				+ ", imageUrl=" + imageUrl + ", price=" + price + ", createTime=" + createTime + "]";
 	}
 
 }

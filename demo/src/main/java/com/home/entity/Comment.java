@@ -5,28 +5,28 @@ import java.util.Date;
 import org.springframework.stereotype.Component;
 
 /**
- * ����ʵ��
- * @author Administrator
+ * 评论实体
+ * @author jpf
  *
  */
 @Component
 public class Comment {
 	
-	private Long id;//����id
+	private Long id;//评论id
 	
-	private Long productId;//������Ʒid
+	private Long productId;//所属商品id
 	
 	private Product product;
 	
-	private Long userId;//�����û�id
+	private Long userId;//所属用户id
 	
 	private Account account;
 	
-	private int type;//��������,0:������1��������2������
+	private int type;//评价类型,0:差评，1：好评，2：中评
 	
-	private String content;//��������
+	private String content;//评论内容
 	
-	private Date createTime;//����ʱ��
+	private Date createTime;//评论时间
 
 	public Long getId() {
 		return id;
@@ -35,9 +35,6 @@ public class Comment {
 	public void setId(Long id) {
 		this.id = id;
 	}
-
-	
-	
 
 	public Long getProductId() {
 		return productId;
@@ -95,8 +92,11 @@ public class Comment {
 		this.account = account;
 	}
 
-	
-	
-	
+	@Override
+	public String toString() {
+		return "Comment [id=" + id + ", productId=" + productId + ", product=" + product + ", userId=" + userId
+				+ ", account=" + account + ", type=" + type + ", content=" + content + ", createTime=" + createTime
+				+ "]";
+	}
 	
 }

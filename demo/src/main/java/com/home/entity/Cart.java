@@ -5,8 +5,8 @@ import java.util.Date;
 import org.springframework.stereotype.Component;
 
 /**
- * ���ﳵʵ��
- * @author Administrator
+ * 购物车实体
+ * @author jpf
  *
  */
 @Component
@@ -14,21 +14,21 @@ public class Cart {
 	
 	private Long id;//id
 	
-	private Long productId;//��Ʒid
+	private Long productId;//商品id
 	
-	private Long userId;//�û�id
+	private Long userId;//用户id
 	
-	private String name;//��Ʒ����
+	private String name;//商品名称
 	
-	private String imageUrl;//��Ʒ��ͼ
+	private String imageUrl;//商品主图
 	
-	private Double price;//��Ʒ�۸�
+	private Double price;//商品价格
 	
-	private int num;//��Ʒ����
+	private int num;//商品数量
 	
-	private Double money;//��Ʒ�۸�
+	private Double money;//商品价格
 	
-	private Date createTime;//���ʱ��
+	private Date createTime;//添加时间
 
 	public Long getId() {
 		return id;
@@ -102,8 +102,11 @@ public class Cart {
 		this.money = money;
 	}
 
-	
-	
-	
-	
+	@Override
+	public String toString() {
+		return "Cart [id=" + id + ", productId=" + productId + ", userId=" + userId + ", name=" + name + ", imageUrl="
+				+ imageUrl + ", price=" + price + ", num=" + num + ", money=" + money + ", createTime=" + createTime
+				+ "]";
+	}
+
 }
