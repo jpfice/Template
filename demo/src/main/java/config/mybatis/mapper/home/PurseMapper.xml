@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.home.dao.PurseDao">
+
+	<resultMap type="Purse" id="Record">
+		<id column="id" property="id" />
+		<result column="userId" property="userId" />
+		<result column="recharge" property="recharge" />
+		<result column="state" property="state" />
+		<result column="createTime" property="createTime" />
+		<association property="account"
+			javaType="com.dj.advert.entity.common.Account">
+			<id column="id" property="id" />
+			<result column="name" property="name" />
+		</association>
+	</resultMap>
+
+	<!-- 确认充值 -->
+	<insert id="add" parameterType="Purse">
+		insert into
+		purse(id,userId,recharge,state,createTime)
+		values(null,#{userId},#{recharge},#{state},null)
+	</insert>
+	<!--根据用户id查询最后一次充值记录 -->
+	<select id="findById" parameterType="Long" resultType="Purse">
+		select *
+		from purse where userId=#{userId} order by createTime desc
+	</select>
+	<!--查询充值列表 -->
+	<select id="findRecord" parameterType="Long" resultMap="Record">
+		select p.id,p.userId,p.recharge,p.state,p.createTime,ac.name
+		from purse p LEFT JOIN account ac on p.userId=ac.id
+		where
+		p.userId=#{userId}
+		<if test="offset != null and pageSize != null">
+			limit #{offset},#{pageSize}
+		</if>
+	</select>
+
+	<!--后台充值管理列表数据 -->
+	<select id="findList" parameterType="Map" resultMap="Record">
+		select p.id,p.userId,p.recharge,p.state,p.createTime,ac.name
+		from purse p LEFT JOIN account ac on p.userId=ac.id
+		<where>
+			<if test="name!=null and name !=''">
+				and ac.name like '%${name}%'
+			</if>
+			<if test="state!=null">
+				and p.state=#{state}
+			</if>
+		</where>
+		<if test="offset != null and pageSize != null">
+			limit #{offset},#{pageSize}
+		</if>
+	</select>
+
+	<select id="getTotal" parameterType="map" resultType="int">
+		select count(*)from purse p LEFT JOIN account ac on p.userId=ac.id
+		<where>
+			<if test="name!=null and name !=''">
+				and ac.name like '%${name}%'
+			</if>
+			<if test="state!=null">
+				and p.state=#{state}
+			</if>
+		</where>
+		<if test="offset != null and pageSize != null">
+			limit #{offset},#{pageSize}
+		</if>
+	</select>
+	<!--更新审核状态和用户余额 -->
+	<update id="examine" parameterType="Purse">
+		update purse set
+		state=#{state} where id=#{id}
+	</update>
+	<!-- 根据ids查询充值列表 -->
+	<!-- <select id="findListByid" parameterType="Map" resultType="Purse">
+		select * from purse where id in
+		<foreach collection="array" item="id" open="(" close=")"
+			separator="," index="index">
+			#{id}
+		</foreach>
+	</select> -->
+	<select id="findListByid" parameterType="Integer" resultType="Purse">
+	select * from purse where id=#{id}
+	</select>
+
+	<!--确认订单后 更新用户余额 -->
+	<update id="editBalance" parameterType="Map">
+		update purse set balance=#{balance} where id=#{pid}
+	</update>
+	
+</mapper>

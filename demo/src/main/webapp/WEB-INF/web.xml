@@ -5,6 +5,25 @@
 	id="WebApp_ID" version="3.1">
 	<display-name>SpringMVC Demo</display-name>
 
+    <!-- 中文乱码处理 -->
+	<filter>
+		<filter-name>CharacterEncodingFilter</filter-name>
+		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+
+		<init-param>
+			<param-name>encoding</param-name>
+			<param-value>UTF-8</param-value>
+		</init-param>
+		<init-param>
+			<param-name>forceEncoding</param-name>
+			<param-value>true</param-value>
+		</init-param>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>CharacterEncodingFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
 	<!--
       方式一：带后缀，比如*.action  *.do *.aaa
              该种方式比较精确、方便，在以前和现在企业中都有很大的使用比例
@@ -31,13 +50,36 @@
 			<param-name>contextConfigLocation</param-name>
 			<param-value>classpath:spring-mvc.xml</param-value>
 		</init-param>
+		<load-on-startup>1</load-on-startup>
 	</servlet>
+	
+	<!-- Spring配置文件信息 -->
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>classpath:config/spring/applicationContext.xml</param-value>
+	</context-param>
+	
 	<!--拦截匹配规则的url请求，进入springmvc框架处理-->
 	<servlet-mapping>
 		<servlet-name>springmvc</servlet-name>
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
 
+	<error-page>
+		<error-code>403</error-code>
+		<location>/views/errors/403.html</location>
+	</error-page>
+	
+	<error-page>
+		<error-code>404</error-code>
+		<location>/views/errors/404.html</location>
+	</error-page>
+
+	<error-page>
+		<error-code>500</error-code>
+		<location>/views/errors/500.html</location>
+	</error-page>
+	
 	<welcome-file-list>
 		<welcome-file>index.html</welcome-file>
 	</welcome-file-list>

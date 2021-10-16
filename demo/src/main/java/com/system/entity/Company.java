@@ -4,6 +4,7 @@ import javax.validation.constraints.Digits;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.Range;
+import org.springframework.stereotype.Component;
 
 /**
  * hibernate-validatorの使う方
@@ -35,6 +36,7 @@ import org.hibernate.validator.constraints.Range;
  * @author jpf
  *
  */
+@Component
 public class Company {
 
 	//UUID

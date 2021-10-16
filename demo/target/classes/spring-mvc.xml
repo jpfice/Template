@@ -27,9 +27,10 @@ http://www.springframework.org/schema/mvc/spring-mvc-4.1.xsd">
 	      <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"/>
 	   </mvc:message-converters>
     </mvc:annotation-driven>
-    <mvc:resources location="js" mapping="/js/**" />
-    <mvc:resources location="css" mapping="/css/**" />
-    <mvc:resources location="images" mapping="/images/**" />
+    <!---->
+    <mvc:resources location="static/js/" mapping="js/**" />
+    <mvc:resources location="static/css/" mapping="css/**" />
+    <mvc:resources location="static/images/" mapping="images/**" />
 
     <!-- jsp模板解析器
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -38,6 +39,7 @@ http://www.springframework.org/schema/mvc/spring-mvc-4.1.xsd">
     </bean>-->
     <!--自动注册最合适的处理器映射器，处理器适配器(调用handler方法)-->
 	<mvc:annotation-driven/>
+	<mvc:default-servlet-handler/>
 	
 	<!-- html模板解析器  -->
     <!-- thymeleaf -->
