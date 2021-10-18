@@ -22,8 +22,8 @@ import com.home.service.ProductService;
 import com.util.MenuUtil;
 
 /**
- * ǰ̨���ۿ�����
- * @author Administrator
+ * 前台评价控制器
+ * @author jpf
  *
  */
 @RequestMapping("/comment")
@@ -36,8 +36,9 @@ public class HomeCommentController {
 	private ProductService productService;
 	@Autowired
 	private CommentService commentService;
+	
 	/**
-	 * �����б�ҳ��
+	 * 评价列表页面
 	 * @param model
 	 * @return
 	 */
@@ -63,7 +64,7 @@ public class HomeCommentController {
 	
 	
 	/**
-	 * �������
+	 * 添加评价
 	 * @param account
 	 * @return
 	 */
@@ -74,20 +75,20 @@ public class HomeCommentController {
 		Account onlineAccount = (Account)request.getSession().getAttribute("account");
 		ret.put("type", "error");
 		if(comment == null){
-			ret.put("msg", "����д��ȷ��������Ϣ");
+			ret.put("msg", "请填写正确的评论信息");
 			return ret;
 		}
 		if(StringUtils.isEmpty(comment.getContent())){
-			ret.put("msg", "����д�������ݣ�");
+			ret.put("msg", "请填写评价内容！");
 			return ret;
 		}
 		comment.setCreateTime(new Date());
 		comment.setUserId(onlineAccount.getId());
 		if(commentService.add(comment) <= 0){
-			ret.put("msg", "����ʧ�ܣ�����ϵ����Ա!");
+			ret.put("msg", "评论失败，请联系管理员!");
 			return ret;
 		}
-		//������Ʒ��������
+		//更新商品评论数量
 		Product product = productService.findById(comment.getProductId());
 		product.setCommentNum(product.getCommentNum()+1);
 		productService.updateNum(product);
@@ -96,7 +97,7 @@ public class HomeCommentController {
 	}
 	
 	/**
-	 * ɾ������
+	 * 删除评论
 	 * @param id
 	 * @return
 	 */
@@ -106,19 +107,19 @@ public class HomeCommentController {
 		Map<String, String> ret = new HashMap<String, String>();
 		ret.put("type", "error");
 		if(id == null){
-			ret.put("msg", "��ѡ��Ҫɾ��������");
+			ret.put("msg", "请选择要删除的评论");
 			return ret;
 		}
 		Comment comment = commentService.findById(id);
 		if(comment == null){
-			ret.put("msg", "���۲�����!");
+			ret.put("msg", "评论不存在!");
 			return ret;
 		}
 		if(commentService.delete(id) <= 0){
-			ret.put("msg", "ɾ����������ϵ����Ա!");
+			ret.put("msg", "删除出错，请联系管理员!");
 			return ret;
 		}
-		//������Ʒ��������
+		//更新商品评论数量
 		Product product = productService.findById(comment.getProductId());
 		product.setCommentNum(product.getCommentNum()-1);
 		productService.updateNum(product);

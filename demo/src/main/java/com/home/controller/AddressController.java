@@ -18,7 +18,7 @@ import com.home.entity.Address;
 import com.home.service.AddressService;
 
 /**
- * AddressController
+ * 前台收货地址控制器
  * @author jpf
  *
  */
@@ -34,8 +34,9 @@ public class AddressController {
 //	private ProductService productService;
 	@Autowired
 	private AddressService addressService;
+	
 	/**
-	 * �ջ���ַ�б�ҳ��
+	 * 收货地址列表页面
 	 * @param model
 	 * @return
 	 */
@@ -54,7 +55,7 @@ public class AddressController {
 	
 	
 	/**
-	 * ����ջ���ַ
+	 * 添加收货地址
 	 * @param account
 	 * @return
 	 */
@@ -65,25 +66,25 @@ public class AddressController {
 		Account onlineAccount = (Account)request.getSession().getAttribute("account");
 		ret.put("type", "error");
 		if(address == null){
-			ret.put("msg", "��ѡ����ȷ���ջ���Ϣ");
+			ret.put("msg", "请选择正确的收货信息");
 			return ret;
 		}
 		if(StringUtils.isEmpty(address.getName())){
-			ret.put("msg", "����д�ջ��ˣ�");
+			ret.put("msg", "请填写收货人！");
 			return ret;
 		}
 		if(StringUtils.isEmpty(address.getAddress())){
-			ret.put("msg", "����д�ջ���ַ��");
+			ret.put("msg", "请填写收货地址！");
 			return ret;
 		}
 		if(StringUtils.isEmpty(address.getPhone())){
-			ret.put("msg", "����д�ֻ��ţ�");
+			ret.put("msg", "请填写手机号！");
 			return ret;
 		}
 		address.setUserId(onlineAccount.getId());
 		address.setCreateTime(new Date());
 		if(addressService.add(address) <= 0){
-			ret.put("msg", "���ʧ�ܣ�����ϵ����Ա!");
+			ret.put("msg", "添加失败，请联系管理员!");
 			return ret;
 		}
 		ret.put("type", "success");
@@ -97,29 +98,29 @@ public class AddressController {
 		Account onlineAccount = (Account)request.getSession().getAttribute("account");
 		ret.put("type", "error");
 		if(address == null){
-			ret.put("msg", "��ѡ����ȷ���ջ���Ϣ");
+			ret.put("msg", "请选择正确的收货信息");
 			return ret;
 		}
 		Address existAddress = addressService.findById(address.getId());
 		if(existAddress == null){
-			ret.put("msg", "�����ڸõ�ַ��");
+			ret.put("msg", "不存在该地址！");
 			return ret;
 		}
 		if(StringUtils.isEmpty(address.getName())){
-			ret.put("msg", "����д�ջ��ˣ�");
+			ret.put("msg", "请填写收货人！");
 			return ret;
 		}
 		if(StringUtils.isEmpty(address.getAddress())){
-			ret.put("msg", "����д�ջ���ַ��");
+			ret.put("msg", "请填写收货地址！");
 			return ret;
 		}
 		if(StringUtils.isEmpty(address.getPhone())){
-			ret.put("msg", "����д�ֻ��ţ�");
+			ret.put("msg", "请填写手机号！");
 			return ret;
 		}
 		address.setUserId(onlineAccount.getId());
 		if(addressService.edit(address) <= 0){
-			ret.put("msg", "�༭ʧ�ܣ�����ϵ����Ա!");
+			ret.put("msg", "编辑失败，请联系管理员!");
 			return ret;
 		}
 		ret.put("type", "success");
@@ -127,7 +128,7 @@ public class AddressController {
 	}
 	
 	/**
-	 * ɾ���ջ���ַ
+	 * 删除收货地址
 	 * @param favoriteId
 	 * @return
 	 */
@@ -137,11 +138,11 @@ public class AddressController {
 		Map<String, String> ret = new HashMap<String, String>();
 		ret.put("type", "error");
 		if(id == null){
-			ret.put("msg", "��ѡ��Ҫɾ���ĵ�ַ");
+			ret.put("msg", "请选择要删除的地址");
 			return ret;
 		}
 		if(addressService.delete(id) <= 0){
-			ret.put("msg", "ɾ����������ϵ����Ա!");
+			ret.put("msg", "删除出错，请联系管理员!");
 			return ret;
 		}
 		ret.put("type", "success");

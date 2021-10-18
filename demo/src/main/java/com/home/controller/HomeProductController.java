@@ -20,7 +20,7 @@ import com.util.MenuUtil;
 
 
 /**
- * ǰ̨��Ʒ������
+ * 前台商品控制器
  * @author jpf
  *
  */
@@ -34,8 +34,9 @@ public class HomeProductController {
 	private ProductService productService;
 	@Autowired
 	private CommentService commentService;
+	
 	/**
-	 * ��Ʒ����ҳ��
+	 * 商品详情页面
 	 * @param model
 	 * @return
 	 */
@@ -44,13 +45,13 @@ public class HomeProductController {
 		model.addObject("productCategoryList", MenuUtil.getTreeCategory(productCategoryService.findList(new HashMap<String, Object>())));
 		model.addObject("allCategoryId","shop_hd_menu_all_category");
 		if(id == null){
-			model.addObject("msg", "�Ƿ���Ʒid");
+			model.addObject("msg", "非法商品id");
 			model.setViewName("home/common/error");
 			return model;
 		}
 		Product product = productService.findById(id);
 		if(product == null){
-			model.addObject("msg", "��Ʒ������");
+			model.addObject("msg", "商品不存在");
 			model.setViewName("home/common/error");
 			return model;
 		}
@@ -71,7 +72,7 @@ public class HomeProductController {
 	}
 	
 	/**
-	 * ��Ʒ�����б�ҳ��
+	 * 商品分类列表页面
 	 * @param model
 	 * @return
 	 */
@@ -86,17 +87,17 @@ public class HomeProductController {
 		model.addObject("allCategoryId","shop_hd_menu_all_category");
 		model.addObject("currentHome", "current_");
 		if(cid == null){
-			model.addObject("msg", "���಻����");
+			model.addObject("msg", "分类不存在");
 			model.setViewName("home/common/error");
 			return model;
 		}
 		ProductCategory productCategory = productCategoryService.findById(cid);
 		if(productCategory == null){
-			model.addObject("msg", "���಻����");
+			model.addObject("msg", "分类不存在");
 			model.setViewName("home/common/error");
 			return model;
 		}
-		model.addObject("title", "������" + productCategory.getName() + "�������µ���Ʒ");
+		model.addObject("title", "搜索【" + productCategory.getName() + "】分类下的商品");
 		Map<String, Object> queryListMap = new HashMap<String, Object>();
 		queryListMap.put("tags", cid);
 		if(!StringUtils.isEmpty(orderby)){
@@ -132,7 +133,7 @@ public class HomeProductController {
 	}
 	
 	/**
-	 * �ؼ���������Ʒ�б�ҳ
+	 * 关键字搜索商品列表页
 	 * @param search_content
 	 * @param orderby
 	 * @param priceMin
@@ -150,7 +151,7 @@ public class HomeProductController {
 			@RequestParam(name="page",required=false)Integer page,
 			ModelAndView model){
 		
-		model.addObject("title", "������" + search_content + "���������Ʒ");
+		model.addObject("title", "搜索【" + search_content + "】标题的商品");
 		model.addObject("currentHome", "current_");
 		Map<String, Object> queryListMap = new HashMap<String, Object>();
 		queryListMap.put("name", search_content);

@@ -21,7 +21,7 @@ import com.util.MenuUtil;
 
 
 /**
- * ǰ̨�û����Ŀ�����
+ * 前台用户中心控制器
  * @author jpf
  *
  */
@@ -37,7 +37,7 @@ public class HomeUserController {
 	//private OrderService orderService;
 	
 	/**
-	 * �û�����ҳ��
+	 * 用户中心页面
 	 * @param model
 	 * @return
 	 */
@@ -53,7 +53,7 @@ public class HomeUserController {
 	}
 	
 	/**
-	 * �޸�����ҳ��
+	 * 修改密码页面
 	 * @param model
 	 * @return
 	 */
@@ -67,7 +67,7 @@ public class HomeUserController {
 	}
 	
 	/**
-	 * �޸������ύ
+	 * 修改密码提交
 	 * @param password
 	 * @param newPassword
 	 * @param request
@@ -81,20 +81,20 @@ public class HomeUserController {
 		Account onlineAccount = (Account)request.getSession().getAttribute("account");
 		ret.put("type", "error");
 		if(StringUtils.isEmpty(password)){
-			ret.put("msg", "�����벻��Ϊ�գ�");
+			ret.put("msg", "旧密码不能为空！");
 			return ret;
 		}
 		if(StringUtils.isEmpty(newPassword)){
-			ret.put("msg", "�����벻��Ϊ�գ�");
+			ret.put("msg", "新密码不能为空！");
 			return ret;
 		}
 		if(!onlineAccount.getPassword().equals(password)){
-			ret.put("msg", "���������");
+			ret.put("msg", "旧密码错误！");
 			return ret;
 		}
 		onlineAccount.setPassword(newPassword);
 		if(accountService.edit(onlineAccount) <= 0){
-			ret.put("msg", "�޸�ʧ�ܣ�����ϵ����Ա��");
+			ret.put("msg", "修改失败，请联系管理员！");
 			return ret;
 		}
 		ret.put("type", "success");
@@ -102,7 +102,7 @@ public class HomeUserController {
 	}
 	
 	/**
-	 * ��������
+	 * 更新资料
 	 * @param account
 	 * @return
 	 */
@@ -114,22 +114,22 @@ public class HomeUserController {
 		Account onlineAccount = (Account)request.getSession().getAttribute("account");
 		ret.put("type", "error");
 		if(account == null){
-			ret.put("msg", "����д��ȷ����Ϣ");
+			ret.put("msg", "请填写正确的信息");
 			return ret;
 		}
 		if(StringUtils.isEmpty(account.getEmail())){
-			ret.put("msg", "�����ַ����Ϊ�գ�");
+			ret.put("msg", "邮箱地址不能为空！");
 			return ret;
 		}
 		if(StringUtils.isEmpty(account.getTrueName())){
-			ret.put("msg", "��ʵ��������Ϊ�գ�");
+			ret.put("msg", "真实姓名不能为空！");
 			return ret;
 		}
 		onlineAccount.setEmail(account.getEmail());
 		onlineAccount.setTrueName(account.getTrueName());
 		onlineAccount.setSex(account.getSex());
 		if(accountService.edit(onlineAccount) <= 0){
-			ret.put("msg", "�޸�ʧ�ܣ�����ϵ����Ա��");
+			ret.put("msg", "修改失败，请联系管理员！");
 			return ret;
 		}
 		ret.put("type", "success");
@@ -137,7 +137,7 @@ public class HomeUserController {
 	}
 	
 	/**
-	 * �µ��ɹ�չʾҳ��
+	 * 下单成功展示页面
 	 * @param model
 	 * @param request
 	 * @return

@@ -24,7 +24,7 @@ import com.home.service.PurseService;
 import com.util.MenuUtil;
 
 /**
- * CartController
+ * 前台购物车控制器
  * @author jpf
  *
  */
@@ -42,14 +42,16 @@ public class CartController {
 	private AddressService addressService;
 	@Autowired
 	private PurseService purseService;
+	
 	/**
-	 * ���ﳵ�б�ҳ��
+	 * 购物车列表页面
 	 * @param model
 	 * @return
 	 */
 	@RequestMapping(value = "/list",method = RequestMethod.GET)
 	public ModelAndView list(ModelAndView model,HttpServletRequest request){
-		model.addObject("productCategoryList", MenuUtil.getTreeCategory(productCategoryService.findList(new HashMap<String, Object>())));
+		model.addObject("productCategoryList",
+				MenuUtil.getTreeCategory(productCategoryService.findList(new HashMap<String, Object>())));
 		model.addObject("allCategoryId","shop_hd_menu_all_category");
 		Account onlineAccount = (Account)request.getSession().getAttribute("account");
 		Map<String, Object> queryMap = new HashMap<String, Object>();
@@ -61,14 +63,15 @@ public class CartController {
 	}
 	
 	/**
-	 * �ύ�����ڶ���
+	 * 提交订单第二步
 	 * @param model
 	 * @param request
 	 * @return
 	 */
 	@RequestMapping(value = "/list_2",method = RequestMethod.GET)
 	public ModelAndView list2(ModelAndView model,HttpServletRequest request){
-		model.addObject("productCategoryList", MenuUtil.getTreeCategory(productCategoryService.findList(new HashMap<String, Object>())));
+		model.addObject("productCategoryList", 
+				MenuUtil.getTreeCategory(productCategoryService.findList(new HashMap<String, Object>())));
 		model.addObject("allCategoryId","shop_hd_menu_all_category");
 		Account onlineAccount = (Account)request.getSession().getAttribute("account");
 		List<Purse> purse = purseService.findById(onlineAccount.getId());
@@ -87,9 +90,8 @@ public class CartController {
 		return model;
 	}
 	
-	
 	/**
-	 * ��ӹ��ﳵ
+	 * 添加购物车
 	 * @param account
 	 * @return
 	 */
@@ -100,33 +102,33 @@ public class CartController {
 		Account onlineAccount = (Account)request.getSession().getAttribute("account");
 		ret.put("type", "error");
 		if(cart == null){
-			ret.put("msg", "��ѡ����ȷ����Ʒ��Ϣ");
+			ret.put("msg", "请选择正确的商品信息");
 			return ret;
 		}
 		if(cart.getProductId() == null){
-			ret.put("msg", "��ѡ��Ҫ��ӵ���Ʒ��");
+			ret.put("msg", "请选择要添加的商品！");
 			return ret;
 		}
 		if(cart.getNum() == 0){
-			ret.put("msg", "����д��Ʒ����");
+			ret.put("msg", "请填写商品数量");
 			return ret;
 		}
 		Product product = productService.findById(cart.getProductId());
 		if(product == null){
-			ret.put("msg", "��Ʒ������");
+			ret.put("msg", "商品不存在");
 			return ret;
 		}
-		//������Ʒ���û�ȥ��ѯ����Ʒ�Ƿ��ѱ���ӵ����ﳵ
+		//根据商品和用户去查询该商品是否已被添加到购物车
 		Map<String, Long> queryMap = new HashMap<String, Long>();
 		queryMap.put("userId", onlineAccount.getId());
 		queryMap.put("productId", product.getId());
 		Cart existCart = cartService.findByIds(queryMap);
 		if(existCart != null){
-			//��ʾ�����Ʒ�Ѿ�����ӵ����ﳵ��ֻ����������ͽ���
+			//表示这个商品已经被添加到购物车，只需更新数量和金额即可
 			existCart.setNum(existCart.getNum() + cart.getNum());
 			existCart.setMoney(existCart.getNum() * existCart.getPrice());
 			if(cartService.edit(existCart) <= 0){
-				ret.put("msg", "��Ʒ�ѱ���ӵ����ﳵ����������������!");
+				ret.put("msg", "商品已被添加到购物车，但更新数量出错!");
 				return ret;
 			}
 			ret.put("type", "success");
@@ -139,7 +141,7 @@ public class CartController {
 		cart.setUserId(onlineAccount.getId());
 		cart.setCreateTime(new Date());
 		if(cartService.add(cart) <= 0){
-			ret.put("msg", "���ʧ�ܣ�����ϵ����Ա!");
+			ret.put("msg", "添加失败，请联系管理员!");
 			return ret;
 		}
 		ret.put("type", "success");
@@ -147,7 +149,7 @@ public class CartController {
 	}
 	
 	/**
-	 * ���¹��ﳵ��Ʒ����
+	 * 更新购物车商品数量
 	 * @param cartId
 	 * @param num
 	 * @return
@@ -155,30 +157,37 @@ public class CartController {
 	@RequestMapping(value = "/update_num",method = RequestMethod.POST)
 	@ResponseBody
 	public Map<String, String> updateNum(Long cartId,Integer num){
+		
 		Map<String, String> ret = new HashMap<String, String>();
 		ret.put("type", "error");
+		
 		Cart cart = cartService.findById(cartId);
 		if(cart == null){
-			ret.put("msg", "��ѡ����ȷ����Ʒ��Ϣ");
+			ret.put("msg", "请选择正确的商品信息");
 			return ret;
 		}
+		
 		if(num == null){
-			ret.put("msg", "����д��Ʒ����");
+			ret.put("msg", "请填写商品数量");
 			return ret;
 		}
+		
 		Product product = productService.findById(cart.getProductId());
 		if(product == null){
-			ret.put("msg", "���ﳵ��Ϣ����");
+			ret.put("msg", "购物车信息有误！");
 			return ret;
 		}
+		
 		if(cart.getNum() + num.intValue() > product.getStock()){
-			ret.put("msg", "��Ʒ�������ܳ����������");
+			ret.put("msg", "商品数量不能超过库存量！");
 			return ret;
 		}
+		
 		cart.setNum(cart.getNum() + num);
 		cart.setMoney(cart.getNum() * cart.getPrice());
+		
 		if(cartService.edit(cart) <= 0){
-			ret.put("msg", "��Ʒ�ѱ���ӵ����ﳵ����������������!");
+			ret.put("msg", "商品已被添加到购物车，但更新数量出错!");
 			return ret;
 		}
 		ret.put("type", "success");
@@ -186,7 +195,7 @@ public class CartController {
 	}
 	
 	/**
-	 * ɾ�����ﳵ��Ʒ
+	 * 删除购物车商品
 	 * @param cartId
 	 * @return
 	 */
@@ -196,11 +205,11 @@ public class CartController {
 		Map<String, String> ret = new HashMap<String, String>();
 		ret.put("type", "error");
 		if(cartId == null){
-			ret.put("msg", "��ѡ��Ҫɾ������Ʒ");
+			ret.put("msg", "请选择要删除的商品");
 			return ret;
 		}
 		if(cartService.delete(cartId) <= 0){
-			ret.put("msg", "ɾ����������ϵ����Ա!");
+			ret.put("msg", "删除出错，请联系管理员!");
 			return ret;
 		}
 		ret.put("type", "success");

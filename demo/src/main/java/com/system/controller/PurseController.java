@@ -1,4 +1,4 @@
-package com.home.controller;
+package com.system.controller;
 
 import java.util.HashMap;
 import java.util.List;
@@ -28,8 +28,9 @@ public class PurseController {
 	private PurseService purseService;
 	@Autowired
 	private ProductCategoryService productCategoryService;
+	
 	/**
-	 * �û���ֵҳ��
+	 * 用户充值页面
 	 * @param model
 	 * @param request
 	 * @return
@@ -49,8 +50,9 @@ public class PurseController {
 		model.setViewName("home/purse/purse");
 		return model;
 	}
+	
 	/**
-	 * ȷ�ϳ�ֵ���
+	 * 确认充值金额
 	 * @return
 	 */
 	@ResponseBody
@@ -60,7 +62,7 @@ public class PurseController {
 		ret.put("type", "error");
 		Purse purse = new Purse();
 		if(balance<=0) {
-			ret.put("msg", "���Ϊ������");
+			ret.put("msg", "金额为正整数");
 			return ret;
 		}
 		Account onlineAccount = (Account)request.getSession().getAttribute("account");
@@ -68,16 +70,16 @@ public class PurseController {
 		purse.setRecharge(balance);
 		purse.setState(0);
 		if(purseService.add(purse)<=0) {
-			ret.put("msg", "��ֵʧ������ϵ����Ա");
+			ret.put("msg", "充值失败请联系管理员");
 			return ret;
 		}
 		ret.put("type", "success");
-		ret.put("msg", "��ֵ�ɹ�,�ȴ�����Ա���");
+		ret.put("msg", "充值成功,等待管理员审核");
 		return ret;
 	}
 
 	/**
-	 * ��ֵ��¼ҳ��
+	 * 充值记录页面
 	 * @param model
 	 * @param request
 	 * @return

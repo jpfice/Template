@@ -20,7 +20,7 @@ import com.home.service.ProductService;
 import com.util.MenuUtil;
 
 /**
- * ǰ̨�ղؿ�����
+ * 前台收藏控制器
  * @author jpf
  *
  */
@@ -34,8 +34,9 @@ public class FavoriteController {
 	private ProductService productService;
 	@Autowired
 	private FavoriteService favoriteService;
+	
 	/**
-	 * �ղ��б�ҳ��
+	 * 收藏列表页面
 	 * @param model
 	 * @return
 	 */
@@ -62,7 +63,7 @@ public class FavoriteController {
 	
 	
 	/**
-	 * ����ղ�
+	 * 添加收藏
 	 * @param account
 	 * @return
 	 */
@@ -73,26 +74,26 @@ public class FavoriteController {
 		Account onlineAccount = (Account)request.getSession().getAttribute("account");
 		ret.put("type", "error");
 		if(favorite == null){
-			ret.put("msg", "��ѡ����ȷ����Ʒ��Ϣ");
+			ret.put("msg", "请选择正确的商品信息");
 			return ret;
 		}
 		if(favorite.getProductId() == null){
-			ret.put("msg", "��ѡ��Ҫ��ӵ���Ʒ��");
+			ret.put("msg", "请选择要添加的商品！");
 			return ret;
 		}
 		Product product = productService.findById(favorite.getProductId());
 		if(product == null){
-			ret.put("msg", "��Ʒ������");
+			ret.put("msg", "商品不存在");
 			return ret;
 		}
-		//������Ʒ���û�ȥ��ѯ����Ʒ�Ƿ��ѱ���ӵ��ղ�
+		//根据商品和用户去查询该商品是否已被添加到收藏
 		Map<String, Long> queryMap = new HashMap<String, Long>();
 		queryMap.put("userId", onlineAccount.getId());
 		queryMap.put("productId", product.getId());
 		Favorite existFavorite = favoriteService.findByIds(queryMap);
 		if(existFavorite != null){
-			//��ʾ�����Ʒ�Ѿ�����ӵ��ղ�
-			ret.put("msg", "��Ʒ�ѱ���ӵ��ղ�!");
+			//表示这个商品已经被添加到收藏
+			ret.put("msg", "商品已被添加到收藏!");
 			return ret;
 		}
 		favorite.setImageUrl(product.getImageUrl());
@@ -101,7 +102,7 @@ public class FavoriteController {
 		favorite.setUserId(onlineAccount.getId());
 		favorite.setCreateTime(new Date());
 		if(favoriteService.add(favorite) <= 0){
-			ret.put("msg", "���ʧ�ܣ�����ϵ����Ա!");
+			ret.put("msg", "添加失败，请联系管理员!");
 			return ret;
 		}
 		ret.put("type", "success");
@@ -110,7 +111,7 @@ public class FavoriteController {
 	
 	
 	/**
-	 * ɾ���ղ���Ʒ
+	 * 删除收藏商品
 	 * @param favoriteId
 	 * @return
 	 */
@@ -120,11 +121,11 @@ public class FavoriteController {
 		Map<String, String> ret = new HashMap<String, String>();
 		ret.put("type", "error");
 		if(favoriteId == null){
-			ret.put("msg", "��ѡ��Ҫɾ������Ʒ");
+			ret.put("msg", "请选择要删除的商品");
 			return ret;
 		}
 		if(favoriteService.delete(favoriteId) <= 0){
-			ret.put("msg", "ɾ����������ϵ����Ա!");
+			ret.put("msg", "删除出错，请联系管理员!");
 			return ret;
 		}
 		ret.put("type", "success");

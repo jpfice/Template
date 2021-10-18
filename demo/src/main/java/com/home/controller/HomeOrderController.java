@@ -31,7 +31,7 @@ import com.util.MenuUtil;
 
 
 /**
- * ǰ̨����������
+ * 前台订单控制器
  * @author jpf
  *
  */
@@ -53,7 +53,7 @@ public class HomeOrderController {
 	private AddressService addressService;
 
 	/**
-	 * �����б�ҳ��
+	 * 订单列表页面
 	 * @param model
 	 * @return
 	 */
@@ -83,7 +83,7 @@ public class HomeOrderController {
 	}
 	
 	/**
-	 * ȷ���ջ�
+	 * 确认收货
 	 * @param id
 	 * @param request
 	 * @return
@@ -94,21 +94,21 @@ public class HomeOrderController {
 		Map<String, String> ret = new HashMap<String, String>();
 		ret.put("type", "error");
 		if(id == null){
-			ret.put("msg", "��ѡ��Ҫ�ջ��Ķ���");
+			ret.put("msg", "请选择要收货的订单");
 			return ret;
 		}
 		Order order = orderService.findById(id);
 		if(order == null){
-			ret.put("msg", "���������ڣ�");
+			ret.put("msg", "订单不存在！");
 			return ret;
 		}
 		if(order.getStatus() != Order.ORDER_STATUS_SENT){
-			ret.put("msg", "��ǰ����״̬�����ܸ�!");
+			ret.put("msg", "当前订单状态不可能改!");
 			return ret;
 		}
 		order.setStatus(Order.ORDER_STATUS_FINISH);
 		if(orderService.edit(order) <= 0){
-			ret.put("msg", "�༭ʧ�ܣ�����ϵ����Ա!");
+			ret.put("msg", "编辑失败，请联系管理员!");
 			return ret;
 		}
 		ret.put("type", "success");
@@ -116,7 +116,7 @@ public class HomeOrderController {
 	}
 	
 	/**
-	 * ��Ӷ���
+	 * 添加订单
 	 * @param account
 	 * @return
 	 */
@@ -127,24 +127,24 @@ public class HomeOrderController {
 			HttpServletRequest request){
 		Map<String, String> ret = new HashMap<String, String>();
 		Account onlineAccount = (Account)request.getSession().getAttribute("account");
-		//���´����ݿ��ȡ
+		//重新从数据库获取
 		onlineAccount = accountService.findById(onlineAccount.getId());
 		ret.put("type", "error");
 		if(addressId == null){
-			ret.put("msg", "��ѡ���ջ���ַ");
+			ret.put("msg", "请选择收货地址");
 			return ret;
 		}
 		Address address = addressService.findById(addressId);
 		if(address == null){
-			ret.put("msg", "��ַ�����ڣ�");
+			ret.put("msg", "地址不存在！");
 			return ret;
 		}
-		//�����û�ȥ��ѯ���ﳵ
+		//根据用户去查询购物车
 		Map<String, Object> queryMap = new HashMap<String, Object>();
 		queryMap.put("userId", onlineAccount.getId());
 		List<Cart> cartList = cartService.findList(queryMap);
 		if(cartList == null){
-			ret.put("msg", "���û����ﳵ��û����Ʒ!");
+			ret.put("msg", "该用户购物车中没有商品!");
 			return ret;
 		}
 		Order order = new Order();
@@ -172,34 +172,32 @@ public class HomeOrderController {
 		order.setCreateTime(new Date());
 		double balance2 = onlineAccount.getBalance();
 		if(totalMoney>balance2) {
-			ret.put("msg", "�û�����,���ֵ��!");
+			ret.put("msg", "用户余额不足,请充值！!");
 			return ret;
 		}
-		//�����û����۳���Ʒ�۸�
+		//根据用户余额扣除商品价格
 		double defaultMoney=(double) (balance2-totalMoney);
 		onlineAccount.setBalance(defaultMoney);
-		//�����û�������Ʒ��ʣ�����
+		//更新用户购买商品后剩余余额
 		if(accountService.editBalance(onlineAccount)<=0) {
-			ret.put("msg", "����ʧ�ܣ�����ϵ����Ա!");
+			ret.put("msg", "购买失败，请联系管理员!");
 			return ret;
 		}
 		request.getSession().setAttribute("account",onlineAccount);
 		if(orderService.add(order) <= 0){
-			ret.put("msg", "���ʧ�ܣ�����ϵ����Ա!");
+			ret.put("msg", "添加失败，请联系管理员!");
 			return ret;
 		}
-		//��չ��ﳵ��������Ʒ����
+		//清空购物车及更新商品销量
 		for(Cart cart:cartList){
 			Product product = productService.findById(cart.getProductId());
 			product.setStock(product.getStock() - cart.getNum());
 			product.setSellNum(product.getSellNum() + cart.getNum());
-			//������Ʒ��桢����
+			//更新商品库存、销量
 			productService.updateNum(product);
 		}
-		//��չ��ﳵ
+		//清空购物车
 		cartService.deleteByUid(onlineAccount.getId());
-		
-		
 		
 		ret.put("type", "success");
 		ret.put("oid", order.getId()+"");
@@ -207,7 +205,7 @@ public class HomeOrderController {
 	}
 	
 	/**
-	 * �µ��ɹ�չʾҳ��
+	 * 下单成功展示页面
 	 * @param model
 	 * @param request
 	 * @return
@@ -223,7 +221,7 @@ public class HomeOrderController {
 	}
 	
 	/**
-	 * ��Ʒ����ҳ��
+	 * 商品评论页面
 	 * @param model
 	 * @param pid
 	 * @param request
