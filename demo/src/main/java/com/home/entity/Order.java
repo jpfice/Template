@@ -7,37 +7,37 @@ import java.util.List;
 import org.springframework.stereotype.Component;
 
 /**
- * ����ʵ��
- * @author Administrator
+ * 订单实体
+ * @author jpf
  *
  */
+
 @Component
 public class Order {
 	
-	public static int ORDER_STATUS_WAITING = 0;//������
+	public static int ORDER_STATUS_WAITING = 0;//待发货
 	
-	public static int ORDER_STATUS_SENT = 1;//�ѷ���
+	public static int ORDER_STATUS_SENT = 1;///已发货
 	
-	public static int ORDER_STATUS_FINISH = 2;//�����
+	public static int ORDER_STATUS_FINISH = 2;//已完成
 	
+	private Long id;//订单分类id
 	
-	private Long id;//��������id
+	private String sn;//订单编号
 	
-	private String sn;//�������
+	private Long userId;//所属用户id
 	
-	private Long userId;//�����û�id
+	private String address;//收货地址
 	
-	private String address;//�ջ���ַ
+	private Double money;//订单总价
 	
-	private Double money;//�����ܼ�
+	private int productNum;//订单商品数
 	
-	private int productNum;//������Ʒ��
+	private int status;//订单状态
 	
-	private int status;//����״̬
+	private String remark;//订单备注
 	
-	private String remark;//������ע
-	
-	private Date createTime;//���ʱ��
+	private Date createTime;//添加时间
 	
 	private List<OrderItem> orderItems = new ArrayList<OrderItem>();
 
@@ -48,8 +48,6 @@ public class Order {
 	public void setId(Long id) {
 		this.id = id;
 	}
-
-	
 
 	public String getSn() {
 		return sn;
@@ -123,8 +121,11 @@ public class Order {
 		this.orderItems = orderItems;
 	}
 
-	
-	
-	
+	@Override
+	public String toString() {
+		return "Order [id=" + id + ", sn=" + sn + ", userId=" + userId + ", address=" + address + ", money=" + money
+				+ ", productNum=" + productNum + ", status=" + status + ", remark=" + remark + ", createTime="
+				+ createTime + ", orderItems=" + orderItems + "]";
+	}
 	
 }

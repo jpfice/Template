@@ -3,17 +3,17 @@ package com.system.entity;
 import org.springframework.stereotype.Component;
 
 /**
- * Ȩ��ʵ��
- * @author llq
+ * 权限实体
+ * @author jpf
  *
  */
 @Component
 public class Authority {
 	private Long id;
 	
-	private Long roleId;//��ɫid
+	private Long roleId;//角色id
 	
-	private Long menuId;//�˵�id
+	private Long menuId;//菜单id
 
 	public Long getId() {
 		return id;

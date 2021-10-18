@@ -5,36 +5,37 @@ import java.util.Date;
 import org.springframework.stereotype.Component;
 
 /**
- * ��Ʒʵ��
- * @author Administrator
+ * 商品实体
+ * @author jpf
  *
  */
+
 @Component
 public class Product {
 	
-	private Long id;//��Ʒ����id
+	private Long id;//商品分类id
 	
-	private Long productCategoryId;//����id
+	private Long productCategoryId;//分类id
 	
-	private String name;//��Ʒ����
+	private String name;//商品名称
 	
-	private String tags;//�����ǩ������������Ʒ��������
+	private String tags;//分类标签，用来按照商品分类搜索
 	
-	private String imageUrl;//��Ʒ��ͼ
+	private String imageUrl;//商品主图
 	
-	private Double price;//��Ʒ�۸�
+	private Double price;//商品价格
 	
-	private int stock;//��Ʒ���
+	private int stock;//商品库存
 	
-	private int sellNum;//����
+	private int sellNum;//销量
 	
-	private int viewNum;//�����
+	private int viewNum;//浏览量
 	
-	private int commentNum;//������
+	private int commentNum;//评论数
 	
-	private String content;//��Ʒ��������
+	private String content;//商品详情描述
 	
-	private Date createTime;//���ʱ��
+	private Date createTime;//添加时间
 
 	public Long getId() {
 		return id;
@@ -134,8 +135,12 @@ public class Product {
 		this.createTime = createTime;
 	}
 
-	
-	
-	
+	@Override
+	public String toString() {
+		return "Product [id=" + id + ", productCategoryId=" + productCategoryId + ", name=" + name + ", tags=" + tags
+				+ ", imageUrl=" + imageUrl + ", price=" + price + ", stock=" + stock + ", sellNum=" + sellNum
+				+ ", viewNum=" + viewNum + ", commentNum=" + commentNum + ", content=" + content + ", createTime="
+				+ createTime + "]";
+	}
 	
 }

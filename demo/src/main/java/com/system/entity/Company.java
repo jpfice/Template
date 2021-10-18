@@ -36,6 +36,7 @@ import org.springframework.stereotype.Component;
  * @author jpf
  *
  */
+
 @Component
 public class Company {
 

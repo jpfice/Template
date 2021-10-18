@@ -3,24 +3,25 @@ package com.home.entity;
 import org.springframework.stereotype.Component;
 
 /**
- * ��Ʒ����ʵ��
- * @author Administrator
+ * 商品分类实体
+ * @author jpf
  *
  */
+
 @Component
 public class ProductCategory {
 	
-	private Long id;//��Ʒ����id
+private Long id;//商品分类id
 	
-	private Long parentId;//���ุid
+	private Long parentId;//分类父id
 	
-	private Long _parentId;//����id,����ƥ��easyui�ĸ���id
+	private Long _parentId;//父类id,用来匹配easyui的父类id
 	
-	private String name;//��Ʒ��������
+	private String name;//商品分类名称
 	
-	private String tags;//�����ǩ���������ʶ�����Ĳ㼶��ϵ
+	private String tags;//分类标签，用来标记识别分类的层级关系
 	
-	private String remark;//��Ʒ���౸ע
+	private String remark;//商品分类备ע
 
 	public Long getId() {
 		return id;
@@ -69,7 +70,11 @@ public class ProductCategory {
 	public void set_parentId(Long _parentId) {
 		this._parentId = parentId;
 	}
-	
-	
+
+	@Override
+	public String toString() {
+		return "ProductCategory [id=" + id + ", parentId=" + parentId + ", _parentId=" + _parentId + ", name=" + name
+				+ ", tags=" + tags + ", remark=" + remark + "]";
+	}
 	
 }

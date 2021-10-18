@@ -5,17 +5,18 @@ import java.util.Date;
 import org.springframework.stereotype.Component;
 
 /**
- * ϵͳ��־
- * @author llq
+ * 系统日志־
+ * @author jpf
  *
  */
+
 @Component
 public class Log {
 	private Long id;
 	
-	private String content;//��־����
+	private String content;//日志内容
 	
-	private Date createTime;//����ʱ��
+	private Date createTime;//创建时间
 
 	public Long getId() {
 		return id;
@@ -41,6 +42,9 @@ public class Log {
 		this.createTime = createTime;
 	}
 
-	
+	@Override
+	public String toString() {
+		return "Log [id=" + id + ", content=" + content + ", createTime=" + createTime + "]";
+	}
 	
 }

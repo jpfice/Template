@@ -3,8 +3,8 @@ package com.system.entity;
 import org.springframework.stereotype.Component;
 
 /**
- * ��ɫroleʵ��
- * @author llq
+ * 角色role实体
+ * @author jpf
  *
  */
 @Component
@@ -14,8 +14,8 @@ public class Role {
 	
 	private String name;
 	
-	private String remark;//��ɫ��ע
-
+	private String remark;//角色备注
+	
 	public Long getId() {
 		return id;
 	}
@@ -39,6 +39,10 @@ public class Role {
 	public void setRemark(String remark) {
 		this.remark = remark;
 	}
-	
+
+	@Override
+	public String toString() {
+		return "Role [id=" + id + ", name=" + name + ", remark=" + remark + "]";
+	}
 	
 }

@@ -1,9 +1,13 @@
 package com.system.entity;
 
+import org.springframework.stereotype.Component;
+
 /**
  * Upload文件实体
  * @author jpf
  */
+
+@Component
 public class UpLoadFile {
 
 	// 文件id
@@ -64,4 +68,11 @@ public class UpLoadFile {
 	public void setUplodetime(String uplodetime) {
 		this.uplodetime = uplodetime;
 	}
+
+	@Override
+	public String toString() {
+		return "UpLoadFile [fileid=" + fileid + ", filename=" + filename + ", fileurl=" + fileurl + ", uplodetime="
+				+ uplodetime + "]";
+	}
+	
 }
