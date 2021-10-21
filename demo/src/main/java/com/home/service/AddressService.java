@@ -9,50 +9,50 @@ import com.home.entity.Address;
 
 
 /**
- * �ջ���ַ�ӿ�
- * @author Administrator
+ * 收货地址接口
+ * @author jpf
  *
  */
 @Service
 public interface AddressService {
 	
 	/**
-	 * ����ջ���ַ
+	 * 添加收货地址
 	 * @param address
 	 * @return
 	 */
 	public int add(Address address);
 	
 	/**
-	 * �༭�ջ���ַ
+	 * 编辑收货地址
 	 * @param address
 	 * @return
 	 */
 	public int edit(Address address);
 	
 	/**
-	 * ɾ���ջ���ַ
+	 * 删除收货地址
 	 * @param id
 	 * @return
 	 */
 	public int delete(Long id);
 	
 	/**
-	 * �����������ʲ�ѯ�ջ���ַ
+	 * 多条件搜索词查询收货地址
 	 * @param queMap
 	 * @return
 	 */
 	public List<Address> findList(Map<String, Object> queryMap);
 	
 	/**
-	 * ��ȡ�����������ܼ�¼��
+	 * 获取符合条件的总记录数
 	 * @param queryMap
 	 * @return
 	 */
 	public Integer getTotal(Map<String, Object> queryMap);
 	
 	/**
-	 * ����id��ѯ�ջ���ַ
+	 * 根据id查询收货地址
 	 * @param id
 	 * @return
 	 */

@@ -11,7 +11,7 @@ import com.home.dao.AddressDao;
 import com.home.entity.Address;
 import com.home.service.AddressService;
 
-@Service
+@Service("addressService")
 public class AddressServiceImpl implements AddressService {
 
 	@Autowired

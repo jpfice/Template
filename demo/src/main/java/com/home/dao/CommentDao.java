@@ -9,49 +9,49 @@ import com.home.entity.Comment;
 
 
 /**
- * CommentDao
+ * 商品评论dao层
  * @author jpf
  *
  */
 @Repository
 public interface CommentDao {
 	/**
-	 * �������
+	 * 添加评论
 	 * @param comment
 	 * @return
 	 */
 	public int add(Comment comment);
 	
 	/**
-	 * �༭����
+	 * 编辑评论
 	 * @param comment
 	 * @return
 	 */
 	public int edit(Comment comment);
 	
 	/**
-	 * ɾ������
+	 * 删除评论
 	 * @param id
 	 * @return
 	 */
 	public int delete(Long id);
 	
 	/**
-	 * �����������ʲ�ѯ����
+	 * 多条件搜索词查询评论
 	 * @param queMap
 	 * @return
 	 */
 	public List<Comment> findList(Map<String, Object> queryMap);
 	
 	/**
-	 * ��ȡ�����������ܼ�¼��
+	 * 获取符合条件的总记录数
 	 * @param queryMap
 	 * @return
 	 */
 	public Integer getTotal(Map<String, Object> queryMap);
 	
 	/**
-	 * ����id��ѯ����
+	 * 根据id查询评论
 	 * @param id
 	 * @return
 	 */

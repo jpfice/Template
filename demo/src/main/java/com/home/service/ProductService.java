@@ -7,57 +7,57 @@ import org.springframework.stereotype.Service;
 import com.home.entity.Product;
 
 /**
- * ��Ʒ�ӿ�
- * @author Administrator
+ * 商品接口
+ * @author jpf
  *
  */
 @Service
 public interface ProductService {
 	
 	/**
-	 * �����Ʒ
+	 * 添加商品
 	 * @param productCategory
 	 * @return
 	 */
 	public int add(Product product);
 	
 	/**
-	 * �༭��Ʒ
+	 * 编辑商品
 	 * @param productCategory
 	 * @return
 	 */
 	public int edit(Product product);
 	
 	/**
-	 * ɾ����Ʒ
+	 * 删除商品
 	 * @param id
 	 * @return
 	 */
 	public int delete(Long id);
 	
 	/**
-	 * �����������ʲ�ѯ��Ʒ
+	 * 多条件搜索词查询商品
 	 * @param queMap
 	 * @return
 	 */
 	public List<Product> findList(Map<String, Object> queryMap);
 	
 	/**
-	 * ��ȡ�����������ܼ�¼��
+	 * 获取符合条件的总记录数
 	 * @param queryMap
 	 * @return
 	 */
 	public Integer getTotal(Map<String, Object> queryMap);
 	
 	/**
-	 * ����id��ѯ��Ʒ
+	 * 根据id查询商品
 	 * @param id
 	 * @return
 	 */
 	public Product findById(Long id);
 	
 	/**
-	 * ����ͳ����Ϣ
+	 * 更新统计信息
 	 * @param product
 	 * @return
 	 */

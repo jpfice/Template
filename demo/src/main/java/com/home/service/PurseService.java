@@ -7,42 +7,42 @@ import org.springframework.stereotype.Service;
 import com.home.entity.Purse;
 
 /**
- * �û���ֵ
- * @author Administrator
+ * 用户充值ֵ
+ * @author jpf
  *
  */
 @Service
 public interface PurseService {
 
 	/**
-	 * ��ֵ�ύ
+	 * 充值提交
 	 * @param address
 	 * @return
 	 */
 	public int add(Purse purse);
 	
 	/**
-	 * ����id��ѯ��ֵ�û�
+	 * 根据id查询充值用户
 	 * @param id
 	 * @return
 	 */
 	public List<Purse> findById(Long id);
 	/**
-	 * ��ѯ��ֵ��¼
+	 * 查询充值记录
 	 * @param userId
 	 * @return
 	 */
 	public List<Purse> findRecord(Map<String,Object> queryMap);
 	
 	/**
-	 * ����Ҫ���ѯ��ֵ�б�
+	 * 根据要求查询充值列表
 	 * @param map
 	 * @return
 	 */
 	public List<Purse> findList(Map<String,Object> queryMap);
 	
 	/**
-	 * ������
+	 * 总条数
 	 * @param queryMap
 	 * @return
 	 */
@@ -50,19 +50,19 @@ public interface PurseService {
 
 	
 	/**
-	 * ��̨��˳ɹ�
+	 * 后台审核成功
 	 */
 	public int examine(Purse purse);
 	
 	/**
-	 * ����ids��ѯ��ֵ�б�
+	 * 根据ids查询充值列表
 	 * @param queryMap
 	 * @return
 	 */
 	public Purse findListByid(Integer id);
 
 	/**
-	 * ȷ�϶����� �����û����
+	 * 确认订单后 更新用户余额
 	 * @param queryMap
 	 * @return
 	 */

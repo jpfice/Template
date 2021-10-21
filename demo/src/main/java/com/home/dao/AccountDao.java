@@ -10,63 +10,63 @@ import com.home.entity.Account;
 
 
 /**
- * AccountDao
+ * 客户dao层
  * @author jpf
  *
  */
 @Repository
 public interface AccountDao {
 	/**
-	 * ��ӿͻ�
+	 * 添加客户
 	 * @param account
 	 * @return
 	 */
 	public int add(Account account);
 	
 	/**
-	 * �༭�ͻ�
+	 * 编辑客户
 	 * @param account
 	 * @return
 	 */
 	public int edit(Account account);
 	
 	/**
-	 * ɾ���ͻ�
+	 * 删除客户
 	 * @param id
 	 * @return
 	 */
 	public int delete(Long id);
 	
 	/**
-	 * �����������ʲ�ѯ�ͻ�
+	 * 多条件搜索词查询客户
 	 * @param queMap
 	 * @return
 	 */
 	public List<Account> findList(Map<String, Object> queryMap);
 	
 	/**
-	 * ��ȡ�����������ܼ�¼��
+	 * 获取符合条件的总记录数
 	 * @param queryMap
 	 * @return
 	 */
 	public Integer getTotal(Map<String, Object> queryMap);
 	
 	/**
-	 * ����id��ѯ�ͻ�
+	 * 根据id查询客户
 	 * @param id
 	 * @return
 	 */
 	public Account findById(Long id);
 	
 	/**
-	 * �����û������ҿͻ�
+	 * 根据用户名查找客户
 	 * @param name
 	 * @return
 	 */
 	public Account findByName(String name);
 	
 	/**
-	 * �����û����
+	 * 更新用户金额
 	 * @param queryMap
 	 * @return
 	 */

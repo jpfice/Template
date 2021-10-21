@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import com.home.entity.Favorite;
 
 /**
- * �ղؽӿ�
+ * 收藏接口
  * @author Administrator
  *
  */
@@ -15,7 +15,7 @@ import com.home.entity.Favorite;
 public interface FavoriteService {
 	
 	/**
-	 * ����ղ�
+	 * 添加收藏
 	 * @param favorite
 	 * @return
 	 */
@@ -23,35 +23,35 @@ public interface FavoriteService {
 	
 	
 	/**
-	 * ɾ���ղ�
+	 * 删除收藏
 	 * @param id
 	 * @return
 	 */
 	public int delete(Long id);
 	
 	/**
-	 * �����������ʲ�ѯ�ղ�
+	 * 多条件搜索词查询收藏
 	 * @param queMap
 	 * @return
 	 */
 	public List<Favorite> findList(Map<String, Object> queryMap);
 	
 	/**
-	 * ��ȡ�����������ܼ�¼��
+	 * 获取符合条件的总记录数
 	 * @param queryMap
 	 * @return
 	 */
 	public Integer getTotal(Map<String, Object> queryMap);
 	
 	/**
-	 * ����id��ѯ�ղ�
+	 * 根据id查询收藏
 	 * @param id
 	 * @return
 	 */
 	public Favorite findById(Long id);
 	
 	/**
-	 * ����ids��ѯ�ղ�
+	 * 根据ids查询收藏
 	 * @param id
 	 * @return
 	 */

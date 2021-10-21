@@ -9,70 +9,70 @@ import com.home.entity.Order;
 import com.home.entity.OrderItem;
 
 /**
- * OrderDao
+ * 订单dao层
  * @author jpf
  *
  */
 @Repository
 public interface OrderDao {
 	/**
-	 * ��Ӷ���
+	 * 添加订单
 	 * @param order
 	 * @return
 	 */
 	public int add(Order order);
 	
 	/**
-	 * ��Ӷ�������
+	 * 添加订单子项
 	 * @param orderItem
 	 * @return
 	 */
 	public int addItem(OrderItem orderItem);
 	
 	/**
-	 * �༭����
+	 * 编辑订单
 	 * @param order
 	 * @return
 	 */
 	public int edit(Order order);
 	
 	/**
-	 * ɾ������
+	 * 删除订单
 	 * @param id
 	 * @return
 	 */
 	public int delete(Long id);
 	
 	/**
-	 * �����������ʲ�ѯ����
+	 * 多条件搜索词查询订单
 	 * @param queMap
 	 * @return
 	 */
 	public List<Order> findList(Map<String, Object> queryMap);
 	
 	/**
-	 * ��ȡ�����������ܼ�¼��
+	 * 获取符合条件的总记录数
 	 * @param queryMap
 	 * @return
 	 */
 	public Integer getTotal(Map<String, Object> queryMap);
 	
 	/**
-	 * ����id��ѯ����
+	 * 根据id查询订单
 	 * @param id
 	 * @return
 	 */
 	public Order findById(Long id);
 	
 	/**
-	 * ���ݶ����Ų�ѯ�����Ķ�������
+	 * 根据订单号查询所属的订单子项
 	 * @param orderId
 	 * @return
 	 */
 	public List<OrderItem> findOrderItemList(Long orderId);
 	
 	/**
-	 * ��ȡͳ����Ϣ
+	 * 获取统计信息
 	 * @param queryMap
 	 * @return
 	 */

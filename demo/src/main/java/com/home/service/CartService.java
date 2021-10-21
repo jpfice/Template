@@ -7,64 +7,64 @@ import org.springframework.stereotype.Service;
 import com.home.entity.Cart;
 
 /**
- * ���ﳵ�ӿ�
- * @author Administrator
+ * 购物车接口
+ * @author jpf
  *
  */
 @Service
 public interface CartService {
 	
 	/**
-	 * ��ӹ��ﳵ
+	 * 添加购物车
 	 * @param cart
 	 * @return
 	 */
 	public int add(Cart cart);
 	
 	/**
-	 * �༭���ﳵ
+	 * 编辑购物车
 	 * @param cart
 	 * @return
 	 */
 	public int edit(Cart cart);
 	
 	/**
-	 * ɾ�����ﳵ
+	 * 删除购物车
 	 * @param id
 	 * @return
 	 */
 	public int delete(Long id);
 	
 	/**
-	 * �����û�idɾ��
+	 * 根据用户id删除
 	 * @param userId
 	 * @return
 	 */
 	public int deleteByUid(Long userId);
 	
 	/**
-	 * �����������ʲ�ѯ���ﳵ
+	 * 多条件搜索词查询购物车
 	 * @param queMap
 	 * @return
 	 */
 	public List<Cart> findList(Map<String, Object> queryMap);
 	
 	/**
-	 * ��ȡ�����������ܼ�¼��
+	 * 获取符合条件的总记录数
 	 * @param queryMap
 	 * @return
 	 */
 	public Integer getTotal(Map<String, Object> queryMap);
 	
 	/**
-	 * ����id��ѯ���ﳵ
+	 * 根据id查询购物车
 	 * @param id
 	 * @return
 	 */
 	public Cart findById(Long id);
 	
 	/**
-	 * ����ids��ѯ���ﳵ
+	 * 根据ids查询购物车
 	 * @param id
 	 * @return
 	 */
