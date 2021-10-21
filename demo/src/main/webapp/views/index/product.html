@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head th:replace="common/common::commonHeader('this is home')"/>
+<body class="nav-md">
+	<div class="container body">
+		<div class="main_container">
+			<!-- 页面顶部公共部分 -->
+			<div th:include="common/common::commonTop" th:remove="tag"></div>
+		</div>
+		<!-- page content -->
+        <div class="right_col" role="main">
+            <!-- 这里是主要内容显示区 -->
+        	<div class="clearfix"></div>
+       		<div>
+				<a href="systemlogin" target="_blank">system login</a>|
+			</div>
+        </div>
+        <!-- /page content -->
+	</div>
+	<!-- 页面顶部公共部分 -->
+	<div th:include="common/common::commonJS" th:remove="tag"></div>
+</body>
+</html>

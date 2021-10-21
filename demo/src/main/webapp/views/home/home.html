@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+  <head th:replace="common/homeCommon::homeCommonHeader('this is home')"></head>
+  <body class="container">
+    <!-- 页面顶部导航栏 -->
+    <div th:include="common/homeCommon::commonNav" th:remove="tag"></div>
+
+    <!-- main -->
+
+    <div class="row" th:each="product : ${lastProductList}">
+      <!-- 第一列 -->
+      <div class="col-md-4">
+        <div class="card mb-4 shadow-sm">
+          <a th:href="@{/product/detail/id=${product.id}}">
+            <img class="card-img-top" th:src="@{(${product.imageUrl})}" alt="Card image" style="width: 100%" >
+          </a>
+          <div class="card-body">
+            <a th:href="@{/product/detail/id=${product.id}}">
+              <p class="card-text" th:text="${product.name}">This is a wider card with supporting text
+              below as a natural lead-in to additional content. This
+              content is a little bit longer.
+            </p></a>
+            <div class="d-flex justify-content-between align-items-center">
+              <small class="text-muted">9 mins</small>
+            </div>
+          </div>
+        </div>
+      </div>
+        <!-- 第二列 -->
+        <div class="col-md-4">
+          <div class="card mb-4 shadow-sm">
+            <svg class="bd-placeholder-img card-img-top" width="100%"
+              height="225" xmlns="http://www.w3.org/2000/svg" role="img"
+              aria-label="Placeholder: Thumbnail"
+              preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect
+                width="100%" height="100%" fill="#55595c" /><text x="50%"
+                  y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
+              <div class="card-body">
+                <p class="card-text">This is a wider card with supporting
+                  text below as a natural lead-in to additional content.
+                  This content is a little bit longer.</p>
+                <div class="d-flex justify-content-between
+                  align-items-center">
+                  <small class="text-muted">9 mins</small>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- 第三列 -->
+          <div class="col-md-4">
+            <div class="card mb-4 shadow-sm">
+              <svg class="bd-placeholder-img card-img-top" width="100%"
+                height="225" xmlns="http://www.w3.org/2000/svg" role="img"
+                aria-label="Placeholder: Thumbnail"
+                preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect
+                  width="100%" height="100%" fill="#55595c" /><text x="50%"
+                    y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
+                <div class="card-body">
+                  <p class="card-text">This is a wider card with supporting
+                    text below as a natural lead-in to additional content.
+                    This content is a little bit longer.</p>
+                  <div class="d-flex justify-content-between
+                    align-items-center">
+                    <small class="text-muted">9 mins</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 页面底部部分 -->
+          <div th:include="common/homeCommon::commonFooter" th:remove="tag"></div>
+        </body>
+      </html>

@@ -4,6 +4,7 @@ import javax.validation.constraints.Digits;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.Range;
+import org.springframework.stereotype.Component;
 
 /**
  * hibernate-validatorの使う方
@@ -35,6 +36,8 @@ import org.hibernate.validator.constraints.Range;
  * @author jpf
  *
  */
+
+@Component
 public class Company {
 
 	//UUID
@@ -47,6 +50,10 @@ public class Company {
 	//公司地址
 	@Range(min=1, max=5)
 	private String comaddress = "";
+	
+	//法人番号
+	@Range(min=1, max=13)
+	private String comnumber = "";
 	
 	//公司网址
 	private String comurl = "";
@@ -102,6 +109,14 @@ public class Company {
 
 	public void setComaddress(String comaddress) {
 		this.comaddress = comaddress;
+	}
+
+	public String getComnumber() {
+		return comnumber;
+	}
+
+	public void setComnumber(String comnumber) {
+		this.comnumber = comnumber;
 	}
 
 	public String getComurl() {
@@ -186,11 +201,11 @@ public class Company {
 
 	@Override
 	public String toString() {
-		return "Company [uuid=" + uuid + ", comname=" + comname + ", comaddress=" + comaddress + ", comurl=" + comurl
-				+ ", comtelephone=" + comtelephone + ", establishdate=" + establishdate + ", employeenumber="
-				+ employeenumber + ", totaloutput=" + totaloutput + ", comdesc=" + comdesc + ", comstatus=" + comstatus
-				+ ", contactname=" + contactname + ", contactmobile=" + contactmobile + ", contactemail=" + contactemail
-				+ "]";
+		return "Company [uuid=" + uuid + ", comname=" + comname + ", comaddress=" + comaddress + ", comnumber="
+				+ comnumber + ", comurl=" + comurl + ", comtelephone=" + comtelephone + ", establishdate="
+				+ establishdate + ", employeenumber=" + employeenumber + ", totaloutput=" + totaloutput + ", comdesc="
+				+ comdesc + ", comstatus=" + comstatus + ", contactname=" + contactname + ", contactmobile="
+				+ contactmobile + ", contactemail=" + contactemail + "]";
 	}
 
 }
