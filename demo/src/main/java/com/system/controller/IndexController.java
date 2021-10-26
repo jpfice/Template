@@ -12,7 +12,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.system.entity.Account;
 import com.system.entity.Product;
+import com.system.service.AccountService;
 import com.system.service.ProductService;
 
 /**
@@ -30,6 +32,9 @@ public class IndexController {
 	@Autowired
 	private ProductService productService;
 	
+	@Autowired
+	private AccountService accountService;
+	
 	@RequestMapping("/home")
 	public ModelAndView home(){
 		
@@ -38,7 +43,7 @@ public class IndexController {
 		
 		Map<String, Object> queryMap = new HashMap<String, Object>();
 		queryMap.put("offset", 0);
-		queryMap.put("pageSize", 5);
+		queryMap.put("pageSize", 8);
 		queryMap.put("orderBy", "createTime");
 		queryMap.put("sort", "desc");
 		List<Product> productList = productService.findList(queryMap);
@@ -67,6 +72,32 @@ public class IndexController {
 		model.setViewName("home/systemhome");
         
         logger.info("----->>>>SystemHomePage End ---------------");
+        return model;
+    }
+	
+	@RequestMapping("/homelogin")
+	public ModelAndView homelogin(ModelAndView model, Account account){
+		logger.info("----->>>>HomePagelogin Start -------------");
+		model.setViewName("home/homelogin");
+        logger.info("----->>>>HomePagelogin End ---------------");
+        return model;
+    }
+	
+	@RequestMapping("/login")
+	public ModelAndView login(Account account){
+		
+		logger.info("----->>>>Homelogin Start -------------");
+		ModelAndView model = new ModelAndView();
+		
+
+//		List<Product> productList = productService.findList(queryMap);
+//		model.addObject("sellProductList", productList);
+		
+		Account acc = accountService.findByName(account.getName());
+		model.addObject("user", acc);
+		model.setViewName("account/account");
+        
+        logger.info("----->>>>Homelogin End ---------------");
         return model;
     }
 	

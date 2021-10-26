@@ -5,30 +5,35 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+	<link href="https://cdn.bootcdn.net/ajax/libs/bootstrap-fileinput/4.3.1/css/fileinput.css" rel="stylesheet">
 	<script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
 	<script src="https://cdn.staticfile.org/popper.js/1.15.0/umd/popper.min.js"></script>
+	<script src="https://cdn.bootcdn.net/ajax/libs/bootstrap-fileinput/4.3.1/js/fileinput.js"></script>
+	<script src="https://cdn.bootcdn.net/ajax/libs/bootstrap-fileinput/4.3.1/js/fileinput_locale_zh.js"></script>
 	<script src="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+	<script src="https://unpkg.com/wangeditor@4.7.9/release/wangEditor.min.js"></script>
+
 </head>
 <body class="container">
     <!-- 页面顶部导航栏 -->
 	<div th:fragment="commonNav">
 		<div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
-		  <h5 class="my-0 mr-md-auto font-weight-normal">Company name</h5>
-		  <nav class="my-2 my-md-0 mr-md-3">
-		    <a class="p-2 text-dark" href="#">Features</a>
-		    <a class="p-2 text-dark" href="#">Enterprise</a>
-		    <a class="p-2 text-dark" href="#">Support</a>
-		    <a class="p-2 text-dark" href="#">Pricing</a>
+		  <h5 class="my-0 mr-md-auto font-weight-normal">JP案内</h5>
+		  <nav class="my-2 my-md-0 mr-md-3" fixed-top>
+		    <a class="p-2 text-dark" href="#">商品</a>
+		    <a class="p-2 text-dark" href="#">签证</a>
+		    <a class="p-2 text-dark" href="#">中古</a>
+		    <a >广告</a>
 		  </nav>
-		  <a class="btn btn-outline-primary" href="#">Sign in</a>
+		  <a class="btn btn-outline-primary" href="homelogin">Sign in</a>
 		</div>
 	</div>
 	
 	<!-- 页面底部部分 -->
 	<div th:fragment="commonFooter">
-		<div class="jumbotron text-center"
-			style="margin-bottom: 0; height: 10px">
-			<p>底部内容</p>
+		<div class="jumbotron text-center fixed-bottom" style="margin-bottom: 0; height: 10px">
+			<p>关于我们</p>
+			<a href="systemHome"><p>系统后台</p></a>
 		</div>
 	</div>
 </body>
