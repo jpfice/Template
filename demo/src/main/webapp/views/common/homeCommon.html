@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="https://www.thymeleaf.org">
+
 <head th:fragment="homeCommonHeader(title)">
 	<title>Bootstrap Home</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -14,27 +15,32 @@
 	<script src="https://unpkg.com/wangeditor@4.7.9/release/wangEditor.min.js"></script>
 
 </head>
+
 <body class="container">
-    <!-- 页面顶部导航栏 -->
+	<!-- 页面顶部导航栏 -->
 	<div th:fragment="commonNav">
-		<div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
-		  <h5 class="my-0 mr-md-auto font-weight-normal">JP案内</h5>
-		  <nav class="my-2 my-md-0 mr-md-3" fixed-top>
-		    <a class="p-2 text-dark" href="#">商品</a>
-		    <a class="p-2 text-dark" href="#">签证</a>
-		    <a class="p-2 text-dark" href="#">中古</a>
-		    <a >广告</a>
-		  </nav>
-		  <a class="btn btn-outline-primary" href="homelogin">Sign in</a>
+		<div
+			class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
+			<h5 class="my-0 mr-md-auto font-weight-normal">JP案内</h5>
+			<nav class="my-2 my-md-0 mr-md-3" fixed-top>
+				<a class="p-2 text-dark" href="#">商品</a>
+				<a class="p-2 text-dark" href="#">签证</a>
+				<a class="p-2 text-dark" href="#">中古</a>
+				<a>广告</a>
+			</nav>
+			<a class="btn btn-outline-primary" href="homelogin">Sign in</a>
 		</div>
 	</div>
-	
+
 	<!-- 页面底部部分 -->
 	<div th:fragment="commonFooter">
 		<div class="jumbotron text-center fixed-bottom" style="margin-bottom: 0; height: 10px">
 			<p>关于我们</p>
-			<a href="systemHome"><p>系统后台</p></a>
+			<a href="systemHome">
+				<p>系统后台</p>
+			</a>
 		</div>
 	</div>
 </body>
+
 </html>

@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="https://www.thymeleaf.org">
+
 <head th:replace="common/homeCommon::homeCommonHeader('this is home')"></head>
+
 <body class="container">
 	<!-- 页面顶部导航栏 -->
 	<div th:include="common/homeCommon::commonNav" th:remove="tag"></div>
@@ -16,31 +18,30 @@
 			</ul>
 		</div>
 		<div class="col-md-10">
-		<div id="editor">
-        	<p>欢迎使用 <b>wangEditor</b> 富文本编辑器</p>
-    	</div>
+			<div id="editor">
+				<p>欢迎使用 <b>wangEditor</b> 富文本编辑器</p>
+			</div>
 			<script type="text/javascript">
-		        var E = window.wangEditor
-		        var editor = new E('#editor')
-		        // 或者 var editor = new E( document.getElementById('editor') )
-		        editor.create()
-    		</script>
-			<!-- 右边购物列表 End -->
-</div>
-</div>
-			<!-- 页面底部部分
-			<div th:include="common/homeCommon::commonFooter" th:remove="tag"></div> -->
-			
-			
-			<footer class="text-muted">
-  <div class="container">
-    <p class="float-right">
-      <a href="#">Back to top</a>
-    </p>
-    <p>Album example is &copy; Bootstrap, but please download and customize it for yourself!</p>
-    <p>New to Bootstrap? <a href="/">Visit the homepage</a> or read our <a href="../getting-started/introduction/">getting started guide</a>.</p>
-  </div>
-</footer>
+				var E = window.wangEditor
+				var editor = new E('#editor')
+				editor.create()
+			</script>
+		</div>
+	</div>
+	<!-- 页面底部部分 -->
+	<!-- <div th:include="common/homeCommon::commonFooter" th:remove="tag"></div> -->
+
+
+	<footer class="text-muted">
+		<div class="container">
+			<p class="float-right">
+				<a href="#">Back to top</a>
+			</p>
+			<p>Album example is &copy; Bootstrap, but please download and customize it for yourself!</p>
+			<p>New to Bootstrap? <a href="/">Visit the homepage</a> or read our <a
+					href="../getting-started/introduction/">getting started guide</a>.</p>
+		</div>
+	</footer>
 </body>
 <script>
 	function editInfo() {
@@ -60,16 +61,16 @@
 			return;
 		}
 		$.ajax({
-			url : 'update_info',
-			type : 'POST',
-			data : {
-				email : email,
-				trueName : trueName,
-				sex : sex
+			url: 'update_info',
+			type: 'POST',
+			data: {
+				email: email,
+				trueName: trueName,
+				sex: sex
 			},
-			dataType : 'json',
-			async : false,
-			success : function(data) {
+			dataType: 'json',
+			async: false,
+			success: function (data) {
 				if (data.type == 'success') {
 					alert('更新成功!');
 					//window.location.href = 'index';
@@ -80,4 +81,5 @@
 		});
 	}
 </script>
+
 </html>

@@ -1,22 +1,25 @@
 <!DOCTYPE html>
 <html xmlns:th="https://www.thymeleaf.org">
-<head th:replace="common/common::commonHeader('this is home')"/>
+
+<head th:replace="common/common::commonHeader('this is home')" />
+
 <body class="nav-md">
 	<div class="container body">
 		<div class="main_container">
-			<!-- ×ó²àµ¼º½À¸²¿·Ö -->
+			<!-- ï¿½ï¿½àµ¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ -->
 			<div th:include="common/common::commonNav" th:remove="tag"></div>
-			<!-- Ò³Ãæ¶¥²¿¹«¹²²¿·Ö -->
+			<!-- Ò³ï¿½æ¶¥ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ -->
 			<div th:include="common/common::commonTop" th:remove="tag"></div>
 		</div>
 		<!-- page content -->
-        <div class="right_col" role="main">
-            <!-- ÕâÀïÊÇÖ÷ÒªÄÚÈÝÏÔÊ¾Çø -->
-        	<div class="clearfix"></div>
-        </div>
-        <!-- /page content -->
+		<div class="right_col" role="main">
+			<!-- ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Òªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¾ï¿½ï¿½ -->
+			<div class="clearfix"></div>
+		</div>
+		<!-- /page content -->
 	</div>
-	<!-- Ò³Ãæ¶¥²¿¹«¹²²¿·Ö -->
+	<!-- Ò³ï¿½æ¶¥ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ -->
 	<div th:include="common/common::commonJS" th:remove="tag"></div>
 </body>
+
 </html>

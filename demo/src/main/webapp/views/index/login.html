@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="https://www.thymeleaf.org">
-<head th:replace="common/common::commonHeader('this is home')"/>
+
+<head th:replace="common/common::commonHeader('this is home')" />
+
 <body class="nav-md">
 
-		<!-- page content -->
-          <body class="login">
+  <!-- page content -->
+
+  <body class="login">
     <div>
       <a class="hiddenanchor" id="signup"></a>
       <a class="hiddenanchor" id="signin"></a>
@@ -82,9 +85,10 @@
       </div>
     </div>
 
-        <!-- /page content -->
-	</div>
-	<!-- 页面顶部公共部分 -->
-	<div th:include="common/common::commonJS" th:remove="tag"></div>
-</body>
+    <!-- /page content -->
+    </div>
+    <!-- 页面顶部公共部分 -->
+    <div th:include="common/common::commonJS" th:remove="tag"></div>
+  </body>
+
 </html>

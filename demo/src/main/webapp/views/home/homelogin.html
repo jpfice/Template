@@ -1,15 +1,19 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="https://www.thymeleaf.org">
+
 <head th:replace="common/common::commonHeader('this is home')" />
+
 <body class="container text-center">
 	<div class="col-md-3 offset-md-5">
 		<form th:action="@{login}" th:object="${account}" method="post">
-			<img class="mb-4" src="" alt=""width="72" height="72">
+			<img class="mb-4" src="" alt="" width="72" height="72">
 			<h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
 			<label for="inputUserName" class="sr-only">UserName</label>
-			<input type="text" id="inputUserName" name="name" class="form-control" placeholder="UserName" th:field="*{name}" required autofocus>
+			<input type="text" id="inputUserName" name="name" class="form-control" placeholder="UserName"
+				th:field="*{name}" required autofocus>
 			<label for="inputPassword" class="sr-only">Password</label>
-			<input type="password" id="inputPassword" name="Password" class="form-control" th:field="*{password}" placeholder="Password" required>
+			<input type="password" id="inputPassword" name="Password" class="form-control" th:field="*{password}"
+				placeholder="Password" required>
 			<div class="checkbox mb-3">
 				<label> <input type="checkbox" value="remember-me">
 					Remember me
@@ -21,36 +25,37 @@
 	</div>
 </body>
 <script type="text/javascript" th:inline="javascript">
-$(document).ready(function(){
-	function login(){
-		var UserName = $("#inputUserName").val();
-		var Password = $("#inputPassword").val();
-		
-		if(UserName == ''){
-			alert('ÇëÌîÐ´UserName!');
-			return;
-		}
-		if(Password == ''){
-			alert('ÇëÌîÐ´Password!');
-			return;
-		}
-		$.ajax({
-			url:'user/info',
-			type:'POST',
-			data:{username:UserName,password:Password},
-			dataType:'json',
-			async:false,
-			success:function(data){
-				if(data.type == 'success'){
-					console.log("UserName" + UserName);
-					window.location = '/user/update_pwd';
-					return false;
-				}else{
-					alert(data.msg);
-				}
+	$(document).ready(function () {
+		function login() {
+			var UserName = $("#inputUserName").val();
+			var Password = $("#inputPassword").val();
+
+			if (UserName == '') {
+				alert('ï¿½ï¿½ï¿½ï¿½Ð´UserName!');
+				return;
 			}
-		});
-	}
-});
+			if (Password == '') {
+				alert('ï¿½ï¿½ï¿½ï¿½Ð´Password!');
+				return;
+			}
+			$.ajax({
+				url: 'user/info',
+				type: 'POST',
+				data: { username: UserName, password: Password },
+				dataType: 'json',
+				async: false,
+				success: function (data) {
+					if (data.type == 'success') {
+						console.log("UserName" + UserName);
+						window.location = '/user/update_pwd';
+						return false;
+					} else {
+						alert(data.msg);
+					}
+				}
+			});
+		}
+	});
 </script>
+
 </html>

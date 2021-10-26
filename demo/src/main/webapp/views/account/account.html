@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="https://www.thymeleaf.org">
+
 <head th:replace="common/homeCommon::homeCommonHeader('this is home')"></head>
+
 <body class="container">
 	<!-- 页面顶部导航栏 -->
 	<div th:include="common/homeCommon::commonNav" th:remove="tag"></div>
@@ -17,38 +19,39 @@
 		</div>
 		<div class="col-md-10">
 			<!-- 右边购物列表 -->
-			<div class="card bg-light text-dark" >
+			<div class="card bg-light text-dark">
 				<div class="card-header">
 					<h3>基本信息</h3>
 				</div>
 				<div class="card-body">
 					<form athion="" name="" method="post" role="form">
-					
+
 						<p>用户名称：<span th:text="${user.name}" /></p>
 						<p>账户余额：<span th:text="${user.balance}"></p>
 						<p>电子邮件：<span th:text="${user.email}"></p>
 						<p>真实姓名：<span th:text="${user.trueName}"></p>
-          				<button type="button" class="btn btn-primary" onClick="editInfo()">修改信息</button>
+						<button type="button" class="btn btn-primary" onClick="editInfo()">修改信息</button>
 					</form>
 
 				</div>
 			</div>
 			<!-- 右边购物列表 End -->
-</div>
-</div>
-			<!-- 页面底部部分
+		</div>
+	</div>
+	<!-- 页面底部部分
 			<div th:include="common/homeCommon::commonFooter" th:remove="tag"></div> -->
-			
-			
-			<footer class="text-muted">
-  <div class="container">
-    <p class="float-right">
-      <a href="#">Back to top</a>
-    </p>
-    <p>Album example is &copy; Bootstrap, but please download and customize it for yourself!</p>
-    <p>New to Bootstrap? <a href="/">Visit the homepage</a> or read our <a href="../getting-started/introduction/">getting started guide</a>.</p>
-  </div>
-</footer>
+
+
+	<footer class="text-muted">
+		<div class="container">
+			<p class="float-right">
+				<a href="#">Back to top</a>
+			</p>
+			<p>Album example is &copy; Bootstrap, but please download and customize it for yourself!</p>
+			<p>New to Bootstrap? <a href="/">Visit the homepage</a> or read our <a
+					href="../getting-started/introduction/">getting started guide</a>.</p>
+		</div>
+	</footer>
 </body>
 <script>
 	function editInfo() {
@@ -68,16 +71,16 @@
 			return;
 		}
 		$.ajax({
-			url : 'update_info',
-			type : 'POST',
-			data : {
-				email : email,
-				trueName : trueName,
-				sex : sex
+			url: 'update_info',
+			type: 'POST',
+			data: {
+				email: email,
+				trueName: trueName,
+				sex: sex
 			},
-			dataType : 'json',
-			async : false,
-			success : function(data) {
+			dataType: 'json',
+			async: false,
+			success: function (data) {
 				if (data.type == 'success') {
 					alert('更新成功!');
 					//window.location.href = 'index';
@@ -88,4 +91,5 @@
 		});
 	}
 </script>
+
 </html>
