@@ -27,9 +27,13 @@ http://www.springframework.org/schema/mvc/spring-mvc-4.1.xsd">
         </mvc:message-converters>
     </mvc:annotation-driven>
 
-    <mvc:resources location="static/js/" mapping="js/**" />
-    <mvc:resources location="static/css/" mapping="css/**" />
-    <mvc:resources location="static/images/" mapping="images/**" />
+    <mvc:resources location="static/Gentelella/js/" mapping="js/**" />
+    <mvc:resources location="static/Gentelella/css/" mapping="css/**" />
+    <mvc:resources location="static/Gentelella/images/" mapping="images/**" />
+    <mvc:resources location="static/AdminLTE/dist/css/" mapping="dist/css/**" />
+    <mvc:resources location="static/AdminLTE/dist/img/" mapping="dist/img/**" />
+    <mvc:resources location="static/AdminLTE/dist/js/" mapping="dist/js/**" />
+    <mvc:resources location="static/AdminLTE/plugins/" mapping="plugins/**" />
 
     <!-- jsp模板解析器
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">

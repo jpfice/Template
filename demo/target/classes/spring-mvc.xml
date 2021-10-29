@@ -3,8 +3,7 @@
     xmlns:context="http://www.springframework.org/schema/context"
     xmlns:mvc="http://www.springframework.org/schema/mvc"
     xmlns:tx="http://www.springframework.org/schema/tx"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="
 http://www.springframework.org/schema/beans
 http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
 http://www.springframework.org/schema/tx
@@ -15,34 +14,38 @@ http://www.springframework.org/schema/mvc
 http://www.springframework.org/schema/mvc/spring-mvc-4.1.xsd">
 
     <!--开启controller扫描-->
-    <context:component-scan base-package="com.home.controller"  />
-    <context:component-scan base-package="com.system.controller"  />
+    <context:component-scan base-package="com.home.controller" />
+    <context:component-scan base-package="com.system.controller" />
 
     <!-- 加载db.properties文件中的内容，db.properties文件中key命名要有一定的特殊规则 -->
     <context:property-placeholder location="classpath:db.properties" />
 
     <mvc:annotation-driven>
-	   <mvc:message-converters>
-	      <bean class="org.springframework.http.converter.StringHttpMessageConverter"/>
-	      <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"/>
-	   </mvc:message-converters>
+        <mvc:message-converters>
+            <bean class="org.springframework.http.converter.StringHttpMessageConverter"/>
+            <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"/>
+        </mvc:message-converters>
     </mvc:annotation-driven>
-    
-    <mvc:resources location="static/js/" mapping="js/**" />
-    <mvc:resources location="static/css/" mapping="css/**" />
-    <mvc:resources location="static/images/" mapping="images/**" />
+
+    <mvc:resources location="static/Gentelella/js/" mapping="js/**" />
+    <mvc:resources location="static/Gentelella/css/" mapping="css/**" />
+    <mvc:resources location="static/Gentelella/images/" mapping="images/**" />
+    <mvc:resources location="static/AdminLTE/dist/css/" mapping="dist/css/**" />
+    <mvc:resources location="static/AdminLTE/dist/img/" mapping="dist/img/**" />
+    <mvc:resources location="static/AdminLTE/dist/js/" mapping="dist/js/**" />
+    <mvc:resources location="static/AdminLTE/plugins/" mapping="plugins/**" />
 
     <!-- jsp模板解析器
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/views/"/>
 		<property name="suffix" value=".jsp"></property>
     </bean>-->
-    
+
     <!--自动注册最合适的处理器映射器，处理器适配器(调用handler方法)-->
-	<mvc:annotation-driven/>
-	<mvc:default-servlet-handler/>
-	
-	<!-- html模板解析器  -->
+    <mvc:annotation-driven/>
+    <mvc:default-servlet-handler/>
+
+    <!-- html模板解析器  -->
     <!-- thymeleaf -->
     <bean id="templateResolver" class="org.thymeleaf.templateresolver.ServletContextTemplateResolver">
         <property name="prefix" value="/views/" />
@@ -56,7 +59,7 @@ http://www.springframework.org/schema/mvc/spring-mvc-4.1.xsd">
     </bean>
     <bean class="org.thymeleaf.spring4.view.ThymeleafViewResolver">
         <property name="templateEngine" ref="templateEngine" />
-        <property name="characterEncoding"  value="UTF-8" />
+        <property name="characterEncoding" value="UTF-8" />
     </bean>
 
 </beans>

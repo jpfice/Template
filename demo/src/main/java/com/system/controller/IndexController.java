@@ -48,9 +48,30 @@ public class IndexController {
 		queryMap.put("sort", "desc");
 		List<Product> productList = productService.findList(queryMap);
 		model.addObject("lastProductList", productList);
-		model.setViewName("home/home");
+		//model.setViewName("home/home");
+		model.setViewName("pages/home");
         
         logger.info("----->>>>HomePage End ---------------");
+        return model;
+    }
+	
+	@RequestMapping("prod/home")
+	public ModelAndView prodhome(){
+		
+		ModelAndView model = new ModelAndView();
+		logger.info("----->>>>ProdHome Start -------------");
+		
+		Map<String, Object> queryMap = new HashMap<String, Object>();
+		queryMap.put("offset", 0);
+		queryMap.put("pageSize", 8);
+		queryMap.put("orderBy", "createTime");
+		queryMap.put("sort", "desc");
+		List<Product> productList = productService.findList(queryMap);
+		model.addObject("lastProductList", productList);
+		model.setViewName("home/home");
+		//model.setViewName("pages/home");
+        
+        logger.info("----->>>>ProdHome End ---------------");
         return model;
     }
 	
@@ -78,7 +99,7 @@ public class IndexController {
 	@RequestMapping("/homelogin")
 	public ModelAndView homelogin(ModelAndView model, Account account){
 		logger.info("----->>>>HomePagelogin Start -------------");
-		model.setViewName("home/homelogin");
+		model.setViewName("pages/login-v2");
         logger.info("----->>>>HomePagelogin End ---------------");
         return model;
     }
@@ -108,6 +129,16 @@ public class IndexController {
         ModelAndView modelAndView=new ModelAndView();
         modelAndView.addObject("date",date);
         modelAndView.setViewName("upload");
+        return modelAndView;
+    }
+	
+	@RequestMapping("visa/visahome")
+	public ModelAndView visahome(){
+        Date date=new Date();
+
+        ModelAndView modelAndView=new ModelAndView();
+        modelAndView.addObject("date",date);
+        modelAndView.setViewName("pages/visa/visahome");
         return modelAndView;
     }
 }
