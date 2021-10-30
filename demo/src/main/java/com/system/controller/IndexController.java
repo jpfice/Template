@@ -35,6 +35,9 @@ public class IndexController {
 	@Autowired
 	private AccountService accountService;
 	
+	/*
+	 * 网站主页面
+	 */
 	@RequestMapping("/home")
 	public ModelAndView home(){
 		
@@ -48,33 +51,15 @@ public class IndexController {
 		queryMap.put("sort", "desc");
 		List<Product> productList = productService.findList(queryMap);
 		model.addObject("lastProductList", productList);
-		//model.setViewName("home/home");
-		model.setViewName("pages/home");
+		model.setViewName("home/home");
         
         logger.info("----->>>>HomePage End ---------------");
         return model;
     }
 	
-	@RequestMapping("prod/home")
-	public ModelAndView prodhome(){
-		
-		ModelAndView model = new ModelAndView();
-		logger.info("----->>>>ProdHome Start -------------");
-		
-		Map<String, Object> queryMap = new HashMap<String, Object>();
-		queryMap.put("offset", 0);
-		queryMap.put("pageSize", 8);
-		queryMap.put("orderBy", "createTime");
-		queryMap.put("sort", "desc");
-		List<Product> productList = productService.findList(queryMap);
-		model.addObject("lastProductList", productList);
-		model.setViewName("home/home");
-		//model.setViewName("pages/home");
-        
-        logger.info("----->>>>ProdHome End ---------------");
-        return model;
-    }
-	
+	/*
+	 * 网站后台系统主页面
+	 */
 	@RequestMapping("/systemHome")
 	public ModelAndView systemHome(){
 		
@@ -99,7 +84,7 @@ public class IndexController {
 	@RequestMapping("/homelogin")
 	public ModelAndView homelogin(ModelAndView model, Account account){
 		logger.info("----->>>>HomePagelogin Start -------------");
-		model.setViewName("pages/login-v2");
+		model.setViewName("home/login-v2");
         logger.info("----->>>>HomePagelogin End ---------------");
         return model;
     }
@@ -116,29 +101,37 @@ public class IndexController {
 		
 		Account acc = accountService.findByName(account.getName());
 		model.addObject("user", acc);
-		model.setViewName("account/account");
+		model.setViewName("account/profile");
         
         logger.info("----->>>>Homelogin End ---------------");
         return model;
     }
 	
-	@RequestMapping("/uplodeFile")
-	public ModelAndView upload(){
-        Date date=new Date();
+	@RequestMapping("/ForgotPassword")
+	public ModelAndView forgotPassword(Account account){
+		
+		logger.info("----->>>>forgotPassword Start -------------");
+		ModelAndView model = new ModelAndView();
 
-        ModelAndView modelAndView=new ModelAndView();
-        modelAndView.addObject("date",date);
-        modelAndView.setViewName("upload");
-        return modelAndView;
+		
+		model.setViewName("home/forgot-password-v2");
+        logger.info("----->>>>forgotPassword End ---------------");
+        return model;
     }
 	
-	@RequestMapping("visa/visahome")
-	public ModelAndView visahome(){
-        Date date=new Date();
+	@RequestMapping("/register")
+	public ModelAndView register(Account account){
+		
+		logger.info("----->>>>Register Start -------------");
+		ModelAndView model = new ModelAndView();
 
-        ModelAndView modelAndView=new ModelAndView();
-        modelAndView.addObject("date",date);
-        modelAndView.setViewName("pages/visa/visahome");
-        return modelAndView;
+		model.setViewName("home/register-v2");
+        
+        logger.info("----->>>>Register End ---------------");
+        return model;
     }
+	
+	
+	
+	
 }

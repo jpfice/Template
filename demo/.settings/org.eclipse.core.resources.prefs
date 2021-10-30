@@ -5,5 +5,7 @@ encoding//src/main/resources/log4j.properties=UTF-8
 encoding//src/main/webapp/views/account/account.html=UTF-8
 encoding//src/main/webapp/views/account/accountAddress.html=UTF-8
 encoding//src/main/webapp/views/account/productlist.html=UTF-8
+encoding//src/main/webapp/views/common/systemTemplate.html=UTF-8
+encoding//src/main/webapp/views/home/home.html=UTF-8
 encoding//src/main/webapp/views/home/home_bk.html=UTF-8
 encoding/<project>=UTF-8

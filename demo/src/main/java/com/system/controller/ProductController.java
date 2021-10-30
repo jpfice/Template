@@ -1,6 +1,8 @@
 package com.system.controller;
 
+import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.lang3.StringUtils;
@@ -29,9 +31,9 @@ import com.system.service.ProductService;
  */
 @RequestMapping("/product")
 @Controller
-public class HomeProductController {
+public class ProductController {
 	
-	private static final Logger logger = LoggerFactory.getLogger(HomeProductController.class); 
+	private static final Logger logger = LoggerFactory.getLogger(ProductController.class); 
 
 //	@Autowired
 //	private ProductCategoryService productCategoryService;
@@ -39,6 +41,30 @@ public class HomeProductController {
 	private ProductService productService;
 //	@Autowired
 //	private CommentService commentService;
+	
+	
+	
+	/*
+	 * 网站商品主页面
+	 */
+	@RequestMapping("prodhome")
+	public ModelAndView prodhome(){
+		
+		ModelAndView model = new ModelAndView();
+		logger.info("----->>>>ProdHome Start -------------");
+		
+		Map<String, Object> queryMap = new HashMap<String, Object>();
+		queryMap.put("offset", 0);
+		queryMap.put("pageSize", 8);
+		queryMap.put("orderBy", "createTime");
+		queryMap.put("sort", "desc");
+		List<Product> productList = productService.findList(queryMap);
+		model.addObject("lastProductList", productList);
+		model.setViewName("product/productList");
+        
+        logger.info("----->>>>ProdHome End ---------------");
+        return model;
+    }
 	
 	/**
 	 * 商品详情页面
@@ -80,11 +106,37 @@ public class HomeProductController {
 	@RequestMapping(value = "/detail/{id}",method = RequestMethod.GET)
 	public ModelAndView index11(ModelAndView model,@PathVariable("id") Long id){
 		
-		logger.info("------------------------------->/detail/{"+ id +"} Start");
-		model.addObject("sellProductList", productService.findById(id));
-		model.setViewName("home/home");
+		logger.info("----->>>>/detail/{"+ id +"} Start");
+		Product product = productService.findById(id);
+		model.addObject("ProductByID", product);
+		model.setViewName("product/productDesc");
 		
-		logger.info("------------------------------->/detail/{"+ id +"} End");
+		logger.info("----->>>>/detail/{"+ id +"} End");
+		return model;
+	}
+	@RequestMapping(value = "/myProduct",method = RequestMethod.GET)
+	public ModelAndView myProduct(ModelAndView model){
+		
+		logger.info("----->>>>MyProduct Start");
+		//Product product = productService.findById(id);
+		Product product = null;
+		model.addObject("ProductByID", product);
+		model.setViewName("product/myProduct");
+		
+		logger.info("----->>>>MyProduct End");
+		return model;
+	}
+	
+	@RequestMapping(value = "/addProduct",method = RequestMethod.GET)
+	public ModelAndView addProduct(ModelAndView model){
+		
+		logger.info("----->>>>AddProduct Start");
+		//Product product = productService.findById(id);
+		Product product = null;
+		model.addObject("ProductByID", product);
+		model.setViewName("product/ProductAdd");
+		
+		logger.info("----->>>>AddProduct End");
 		return model;
 	}
 	
@@ -204,4 +256,15 @@ public class HomeProductController {
 //		model.setViewName("home/product/search");
 //		return model;
 //	}
+	
+	
+	@RequestMapping("/uplodeFile")
+	public ModelAndView upload(){
+        Date date=new Date();
+
+        ModelAndView modelAndView=new ModelAndView();
+        modelAndView.addObject("date",date);
+        modelAndView.setViewName("upload");
+        return modelAndView;
+    }
 }

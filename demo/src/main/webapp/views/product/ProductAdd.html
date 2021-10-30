@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>JPannai | 商品发布</title>
+
+  <!-- Google Font: Source Sans Pro -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="../plugins/fontawesome-free/css/all.min.css">
+  <!-- dropzonejs -->
+  <link rel="stylesheet" href="../plugins/dropzone/min/dropzone.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="../dist/css/adminlte.min.css">
+</head>
+<body class="hold-transition sidebar-mini">
+<div class="wrapper">
+  <!-- Navbar -->
+  <nav class="main-header navbar navbar-expand navbar-white navbar-light" style="margin-left: 0px;">
+    <!-- Left navbar links -->
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+      </li>
+      <li class="nav-item d-none d-sm-inline-block">
+        <a th:href="${#httpServletRequest.getContextPath()}" class="nav-link">Home</a>
+      </li>
+      <li class="nav-item d-none d-sm-inline-block">
+        <a href="#" class="nav-link">Contact</a>
+      </li>
+    </ul>
+
+    <!-- Right navbar links -->
+    <ul class="navbar-nav ml-auto">
+      <!-- Navbar Search -->
+      <li class="nav-item">
+        <a class="nav-link" data-widget="navbar-search" href="#" role="button">
+          <i class="fas fa-search"></i>
+        </a>
+        <div class="navbar-search-block">
+          <form class="form-inline">
+            <div class="input-group input-group-sm">
+              <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
+              <div class="input-group-append">
+                <button class="btn btn-navbar" type="submit">
+                  <i class="fas fa-search"></i>
+                </button>
+                <button class="btn btn-navbar" type="button" data-widget="navbar-search">
+                  <i class="fas fa-times"></i>
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </li>
+
+      <!-- Messages Dropdown Menu -->
+      <li class="nav-item dropdown">
+        <a class="nav-link" data-toggle="dropdown" href="#">
+          <i class="far fa-comments"></i>
+          <span class="badge badge-danger navbar-badge">3</span>
+        </a>
+        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" data-widget="fullscreen" href="#" role="button">
+          <i class="fas fa-expand-arrows-alt"></i>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button">
+          <i class="fas fa-th-large"></i>
+        </a>
+      </li>
+    </ul>
+  </nav>
+  <!-- /.navbar -->
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper" style="margin-left: 0px;">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>新商品发布</h1>
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active">General Form</li>
+            </ol>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container">
+        <div class="row">
+          <!-- right column -->
+          <div class="col-md-12">
+            <!-- general form elements disabled -->
+            <div class="card card-warning">
+              <div class="card-header">
+                <h3 class="card-title">商品信息</h3>
+              </div>
+              <!-- /.card-header -->
+                <form class="form-horizontal">
+                  <div class="card-body">
+                  <!-- text input -->
+                  <div class="form-group row">
+                    <label for="inputProductName" class="col-sm-1 col-form-label">商品名</label>
+                    <div class="col-sm-8">
+                      <input type="text" class="form-control" id="inputProductName" placeholder="商品名">
+                    </div>
+                  </div>
+                  <!-- textarea -->
+                  <div class="form-group row">
+                    <label for="inputProductDesc" class="col-sm-1 col-form-label">商品简介</label>
+                    <div class="col-sm-8">
+                      <textarea class="form-control" rows="3" id="inputProductDesc" placeholder="商品简介"></textarea>
+                    </div>
+                  </div>
+                  <!-- text input -->
+                  <div class="form-group row">
+                    <label for="inputProducCount" class="col-sm-1 col-form-label">商品库存</label>
+                    <div class="col-sm-3">
+                      <input type="text" class="form-control" id="inputProducCount" placeholder="商品库存">
+                    </div>
+                  </div>
+                  <!-- text input -->
+                  <div class="form-group row">
+                    <label for="inputProducPrice" class="col-sm-1 col-form-label">商品价格</label>
+                    <div class="col-sm-3">
+                      <div class="input-group">
+                        <input type="text" class="form-control">
+                        <div class="input-group-append">
+                          <span class="input-group-text">
+                            <i class="fas fa-dollar-sign"></i>
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- select 商品种类 -->
+                  <div class="form-group row">
+                    <label for="inputProducCount" class="col-sm-1 col-form-label">商品种类</label>
+                    <div class="col-sm-3">
+                      <select class="form-control">
+                        <option>日用百货</option>
+                        <option>服装</option>
+                        <option>防疫物资</option>
+                        <option>儿童玩具</option>
+                        <option>电子产品</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <!-- checkbox -->
+                      <div class="form-group">
+                        <div class="form-check">
+                          <input class="form-check-input" type="checkbox">
+                          <label class="form-check-label">Checkbox</label>
+                        </div>
+                        <div class="form-check">
+                          <input class="form-check-input" type="checkbox" checked>
+                          <label class="form-check-label">Checkbox checked</label>
+                        </div>
+                      </div>
+                      <!-- radio -->
+                      <div class="form-group">
+                        <div class="form-check">
+                          <input class="form-check-input" type="radio" name="radio1">
+                          <label class="form-check-label">Radio</label>
+                        </div>
+                        <div class="form-check">
+                          <input class="form-check-input" type="radio" name="radio1" checked>
+                          <label class="form-check-label">Radio checked</label>
+                        </div>
+                      </div>
+                    </div>
+                   </div>
+                   </div>
+                </form>
+
+              <!-- /.card-body -->
+              <div class="card-footer">
+                <button type="submit" class="btn btn-info">提交</button>
+                <button type="submit" class="btn btn-default float-right">取消</button>
+              </div>
+            </div>
+            <!-- /.card -->
+          </div>
+          <!--/.col (right) -->
+        </div>
+        <!-- /.row -->
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card card-default">
+              <div class="card-header">
+                <h3 class="card-title">上传图片<small> (一次可上传多张图片)</small></h3>
+              </div>
+              <div class="card-body">
+                <div id="actions" class="row">
+                  <div class="col-lg-6">
+                    <div class="btn-group w-100">
+                      <span class="btn btn-success col fileinput-button">
+                        <i class="fas fa-plus"></i>
+                        <span>Add files</span>
+                      </span>
+                      <button type="submit" class="btn btn-primary col start">
+                        <i class="fas fa-upload"></i>
+                        <span>Start upload</span>
+                      </button>
+                      <button type="reset" class="btn btn-warning col cancel">
+                        <i class="fas fa-times-circle"></i>
+                        <span>Cancel upload</span>
+                      </button>
+                    </div>
+                  </div>
+                  <div class="col-lg-6 d-flex align-items-center">
+                    <div class="fileupload-process w-100">
+                      <div id="total-progress" class="progress progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+                        <div class="progress-bar progress-bar-success" style="width:0%;" data-dz-uploadprogress></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="table table-striped files" id="previews">
+                  <div id="template" class="row mt-2">
+                    <div class="col-auto">
+                        <span class="preview"><img src="data:," alt="" data-dz-thumbnail /></span>
+                    </div>
+                    <div class="col d-flex align-items-center">
+                        <p class="mb-0">
+                          <span class="lead" data-dz-name></span>
+                          (<span data-dz-size></span>)
+                        </p>
+                        <strong class="error text-danger" data-dz-errormessage></strong>
+                    </div>
+                    <div class="col-4 d-flex align-items-center">
+                        <div class="progress progress-striped active w-100" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+                          <div class="progress-bar progress-bar-success" style="width:0%;" data-dz-uploadprogress></div>
+                        </div>
+                    </div>
+                    <div class="col-auto d-flex align-items-center">
+                      <div class="btn-group">
+                        <button class="btn btn-primary start">
+                          <i class="fas fa-upload"></i>
+                          <span>Start</span>
+                        </button>
+                        <button data-dz-remove class="btn btn-warning cancel">
+                          <i class="fas fa-times-circle"></i>
+                          <span>Cancel</span>
+                        </button>
+                        <button data-dz-remove class="btn btn-danger delete">
+                          <i class="fas fa-trash"></i>
+                          <span>Delete</span>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- /.card-body -->
+              <div class="card-footer">
+                All rights reserved
+              </div>
+            </div>
+            <!-- /.card -->
+          </div>
+        </div>
+      <!-- /.container-fluid -->
+      </div>
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+  <div th:include="common/adminTemp::comFooter" th:remove="tag"></div>
+
+</div>
+<!-- ./wrapper -->
+
+<!-- jQuery -->
+<script src="../plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- bs-custom-file-input 
+<script src="../../plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>-->
+<!-- AdminLTE App -->
+<script src="../dist/js/adminlte.min.js"></script>
+<!-- dropzonejs -->
+<script src="../plugins/dropzone/min/dropzone.min.js"></script>
+<!-- Page specific script -->
+<script>
+// $(function () {
+//   bsCustomFileInput.init();
+// });
+
+// DropzoneJS Demo Code Start
+Dropzone.autoDiscover = false
+
+// Get the template HTML and remove it from the doumenthe template HTML and remove it from the doument
+var previewNode = document.querySelector("#template")
+previewNode.id = ""
+var previewTemplate = previewNode.parentNode.innerHTML
+previewNode.parentNode.removeChild(previewNode)
+
+var myDropzone = new Dropzone(document.body, { // Make the whole body a dropzone
+  url: "/target-url", // Set the url
+  thumbnailWidth: 80,
+  thumbnailHeight: 80,
+  parallelUploads: 20,
+  previewTemplate: previewTemplate,
+  autoQueue: false, // Make sure the files aren't queued until manually added
+  previewsContainer: "#previews", // Define the container to display the previews
+  clickable: ".fileinput-button" // Define the element that should be used as click trigger to select files.
+})
+
+myDropzone.on("addedfile", function(file) {
+  // Hookup the start button
+  file.previewElement.querySelector(".start").onclick = function() { myDropzone.enqueueFile(file) }
+})
+
+// Update the total progress bar
+myDropzone.on("totaluploadprogress", function(progress) {
+  document.querySelector("#total-progress .progress-bar").style.width = progress + "%"
+})
+
+myDropzone.on("sending", function(file) {
+  // Show the total progress bar when upload starts
+  document.querySelector("#total-progress").style.opacity = "1"
+  // And disable the start button
+  file.previewElement.querySelector(".start").setAttribute("disabled", "disabled")
+})
+
+// Hide the total progress bar when nothing's uploading anymore
+myDropzone.on("queuecomplete", function(progress) {
+  document.querySelector("#total-progress").style.opacity = "0"
+})
+
+// Setup the buttons for all transfers
+// The "add files" button doesn't need to be setup because the config
+// `clickable` has already been specified.
+document.querySelector("#actions .start").onclick = function() {
+  myDropzone.enqueueFiles(myDropzone.getFilesWithStatus(Dropzone.ADDED))
+}
+document.querySelector("#actions .cancel").onclick = function() {
+  myDropzone.removeAllFiles(true)
+}
+// DropzoneJS Demo Code End
+
+</script>
+</body>
+</html>
