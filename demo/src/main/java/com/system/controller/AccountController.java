@@ -21,7 +21,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.system.entity.Account;
 import com.system.service.AccountService;
-import com.util.FtpUtils;
 import com.util.Page;
 
 /**
@@ -45,7 +44,9 @@ public class AccountController {
 	 */
 	@RequestMapping(value="/list",method=RequestMethod.GET)
 	public ModelAndView list(ModelAndView model){
+		logger.info("----->>>>toAccountListPage Start -------------");
 		model.setViewName("account/list");
+		logger.info("----->>>>toAccountListPage End -------------");
 		return model;
 	}
 	
@@ -60,6 +61,7 @@ public class AccountController {
 	public Map<String, Object> list(@RequestParam(name="name",defaultValue="")String name,
 			@RequestParam(name="sex",defaultValue="")Integer sex,
 			@RequestParam(name="status",defaultValue="")Integer status,Page page){
+		logger.info("----->>>>AccountList Start -------------");
 		Map<String, Object> ret = new HashMap<String, Object>();
 		Map<String, Object> queryMap = new HashMap<String, Object>();
 		queryMap.put("name", name);
@@ -73,6 +75,7 @@ public class AccountController {
 		queryMap.put("pageSize", page.getRows());
 		ret.put("rows", accountService.findList(queryMap));
 		ret.put("total", accountService.getTotal(queryMap));
+		logger.info("----->>>>AccountList End -------------");
 		return ret;
 	}
 	
@@ -85,6 +88,7 @@ public class AccountController {
 	@RequestMapping(value="/add",method=RequestMethod.POST)
 	@ResponseBody
 	public Map<String, Object> add(Account account){
+		logger.info("----->>>>AddAccount Start -------------");
 		Map<String, Object> ret = new HashMap<String, Object>();
 		if(account == null){
 			ret.put("type", "error");
@@ -114,6 +118,7 @@ public class AccountController {
 		}
 		ret.put("type", "success");
 		ret.put("msg", "添加成功!");
+		logger.info("----->>>>AddAccount End -------------");
 		return ret;
 	}
 	
@@ -125,6 +130,7 @@ public class AccountController {
 	@RequestMapping(value="/edit",method=RequestMethod.POST)
 	@ResponseBody
 	public Map<String, Object> edit(Account account){
+		logger.info("----->>>>EditAccount Start -------------");
 		Map<String, Object> ret = new HashMap<String, Object>();
 		if(account == null){
 			ret.put("type", "error");
@@ -153,6 +159,7 @@ public class AccountController {
 		}
 		ret.put("type", "success");
 		ret.put("msg", "编辑成功!");
+		logger.info("----->>>>EditAccount End -------------");
 		return ret;
 	}
 	
@@ -164,6 +171,7 @@ public class AccountController {
 	@RequestMapping(value="/delete",method=RequestMethod.POST)
 	@ResponseBody
 	public Map<String, Object> delete(Long id){
+		logger.info("----->>>>DeleteAccount Start -------------");
 		Map<String, Object> ret = new HashMap<String, Object>();
 		if(id == null){
 			ret.put("type", "error");
@@ -185,6 +193,7 @@ public class AccountController {
 		
 		ret.put("type", "success");
 		ret.put("msg", "删除成功!");
+		logger.info("----->>>>DeleteAccount End -------------");
 		return ret;
 	}
 	
@@ -209,7 +218,9 @@ public class AccountController {
 	 */
 	@RequestMapping(value="/productlist",method=RequestMethod.GET)
 	public ModelAndView accuntProductList(ModelAndView model){
+		logger.info("----->>>>toAccountProductListPage Start -------------");
 		model.setViewName("account/productlist");
+		logger.info("----->>>>toAccountProductListPage End -------------");
 		return model;
 	}
 	
@@ -247,11 +258,11 @@ public class AccountController {
 	@RequestMapping("/Address")
 	public String  address(HttpServletRequest httpServletRequest, @RequestParam(value = "file", required = false) MultipartFile file) throws Exception {
 
-		logger.info("----->>>>AccountController Start -------------");
+		logger.info("----->>>>AccountAddress Start -------------");
 
 		
 		
-		logger.info("----->>>>AccountController End -------------");
+		logger.info("----->>>>AccountAddress End -------------");
 		return "account/accountAddress";
 	}
 }

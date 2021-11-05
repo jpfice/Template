@@ -2,7 +2,6 @@ package com.system.controller;
 
 import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import org.slf4j.Logger;
@@ -10,8 +9,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
-
-import com.system.entity.Product;
 
 @RequestMapping("/visa")
 @Controller
@@ -41,14 +38,18 @@ public class VisaController {
         return model;
     }
 	
-	
+	/*
+	 * 签证相关图片上传
+	 */
 	@RequestMapping("/uplodeFile")
 	public ModelAndView upload(){
+		logger.info("----->>>>VisaImgUpload Start -------------");
         Date date=new Date();
 
         ModelAndView modelAndView=new ModelAndView();
         modelAndView.addObject("date",date);
         modelAndView.setViewName("upload");
+        logger.info("----->>>>VisaImgUpload End -------------");
         return modelAndView;
     }
 

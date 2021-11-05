@@ -73,6 +73,8 @@ public class ProductController {
 	 */
 	@RequestMapping(value = "/detail",method = RequestMethod.GET)
 	public ModelAndView index(ModelAndView model,Long id){
+		
+		logger.info("----->>>>ProductDesc Start -------------");
 		//model.addObject("productCategoryList", MenuUtil.getTreeCategory(productCategoryService.findList(new HashMap<String, Object>())));
 		model.addObject("allCategoryId","shop_hd_menu_all_category");
 		if(id == null){
@@ -99,6 +101,8 @@ public class ProductController {
 		model.setViewName("home/product/detail");
 		product.setViewNum(product.getViewNum()+1);
 		productService.updateNum(product);
+		
+		logger.info("----->>>>ProductDesc End -------------");
 		return model;
 	}
 	
@@ -260,11 +264,13 @@ public class ProductController {
 	
 	@RequestMapping("/uplodeFile")
 	public ModelAndView upload(){
+		logger.info("----->>>>ProductImgUpload Start");
         Date date=new Date();
 
         ModelAndView modelAndView=new ModelAndView();
         modelAndView.addObject("date",date);
         modelAndView.setViewName("upload");
+        logger.info("----->>>>ProductImgUpload End");
         return modelAndView;
     }
 }
